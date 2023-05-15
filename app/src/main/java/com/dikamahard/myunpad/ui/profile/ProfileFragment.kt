@@ -7,6 +7,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.dikamahard.myunpad.R
 import com.dikamahard.myunpad.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -21,10 +23,6 @@ class ProfileFragment : Fragment() {
 
     private lateinit var optionsMenu: Menu
 
-    companion object {
-        const val USER_PROFILE = "Users"
-    }
-
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -35,16 +33,27 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        /*
         val profileViewModel =
             ViewModelProvider(this).get(ProfileViewModel::class.java)
-
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
         val textView: TextView = binding.textNotifications
         profileViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+        */
+
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+
+        setHasOptionsMenu(true)
+        return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.tvName.text = mAuth.currentUser?.displayName
         val userId = mAuth.currentUser!!.uid
@@ -56,8 +65,6 @@ class ProfileFragment : Fragment() {
             binding.tvFakultas.text = it.child("fakultas").value.toString()
         }
 
-        setHasOptionsMenu(true)
-        return root
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -69,12 +76,13 @@ class ProfileFragment : Fragment() {
         return when (item.itemId) {
             R.id.option -> {
                 // Handle edit profile click
-                Toast.makeText(context,"Edit Profil", Toast.LENGTH_SHORT ).show()
+                findNavController().navigate(R.id.action_navigation_profile_to_settingFragment)
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
