@@ -171,7 +171,7 @@ class CategoryViewModel : ViewModel() {
             }
         }
 
-        dbRef.child(FirebaseRepository.POST).orderByChild("kategori").equalTo("Kampus").addValueEventListener(postListener)
+        dbRef.child(FirebaseRepository.POST).orderByChild("kategori").equalTo("Unpad").addValueEventListener(postListener)
         Log.d("GETPOST", "list = $listPost")
     }
 
