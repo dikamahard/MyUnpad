@@ -111,7 +111,7 @@ class CreateProfileActivity : AppCompatActivity() {
 
             //bikin error handling kalo ada isian yg kosong
 
-            val userData = User(name, npm, prodi, fakultas, bio, kontak, email = email, isnew = false)
+            val userData = User(name, npm, prodi, fakultas, "Unpad", bio, kontak, email = email, isnew = false)
 
             val profileUpdates = userProfileChangeRequest {
                 displayName = name

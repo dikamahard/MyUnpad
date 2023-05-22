@@ -1,6 +1,7 @@
 package com.dikamahard.myunpad.repository
 
 import android.app.Application
+import android.provider.ContactsContract.Data
 import android.util.Log
 import android.widget.Toast
 import com.dikamahard.myunpad.model.Post
@@ -67,11 +68,39 @@ class FirebaseRepository(auth: FirebaseAuth, db: FirebaseDatabase) {
     }
 
     // CreatePost
-    fun createPost(post: Post) {
+    suspend fun createPost(post: Post) {
         val timestamp = System.currentTimeMillis().toString()
         val uId = userAuth!!.uid
         val postId = "$timestamp-$uId"
+        val category = post.kategori
+        lateinit var categoryRef: DataSnapshot
+
+        // get the spesific category from user profile
+        when(category) {
+            "Fakultas" -> categoryRef = dbRef.child(USER).child(uId).child("fakultas").get().await()
+            "Prodi" -> categoryRef = dbRef.child(USER).child(uId).child("prodi").get().await()
+            else -> categoryRef = dbRef.child(USER).child(uId).child("kampus").get().await()
+        }
+        post.kategori = categoryRef.value.toString()
+
+        // push to post db
         dbRef.child(POST).child(postId).setValue(post)
+
+        // push to category post db
+    }
+
+    // getUserFakultas
+    suspend fun getFakultas(): String {
+        val uId = userAuth!!.uid
+        val fakultas = dbRef.child(USER).child(uId).child("fakultas").get().await()
+        return fakultas.value.toString()
+    }
+
+    // getUserProdi
+    suspend fun getProdi(): String {
+        val uId = userAuth!!.uid
+        val prodi = dbRef.child(USER).child(uId).child("prodi").get().await()
+        return prodi.value.toString()
     }
 
 
@@ -131,6 +160,8 @@ class FirebaseRepository(auth: FirebaseAuth, db: FirebaseDatabase) {
 
         return listPost
     }
+
+
 
      fun getPostTest(): List<Post> {
 

@@ -5,6 +5,7 @@ data class User(
     val npm: String? = null,
     val prodi: String? = null,
     val fakultas: String? = null,
+    val kampus: String? = null,
     val bio: String? = null,
     val kontak: String? = null,
     val image: String? = null,

@@ -81,7 +81,7 @@ class CategoryFragment : Fragment() {
         } else if (arguments?.getInt(POSITION) == 1) {
             // info fakultas
             //binding.tvCategory.text = "Informasi Fakultas"
-            viewModel.getPostFakultas()
+            viewModel.getPostFakultas(viewModel.getFakultas())
 
             viewModel.listPostFakultas.observe(requireActivity()) { listPost ->
                 val adapter = PostAdapter(listPost)
@@ -92,7 +92,7 @@ class CategoryFragment : Fragment() {
         }else if (arguments?.getInt(POSITION) == 2) {
             // info prodi
             //binding.tvCategory.text = "Informasi Prodi"
-            viewModel.getPostProdi()
+            viewModel.getPostProdi(viewModel.getProdi())
 
             viewModel.listPostProdi.observe(requireActivity()) { listPost ->
                 val adapter = PostAdapter(listPost)
