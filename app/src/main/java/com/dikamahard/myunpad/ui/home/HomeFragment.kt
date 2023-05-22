@@ -64,9 +64,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(this)
+        val sectionsPagerAdapter = SectionsPagerAdapter(requireActivity())
+
         val viewPager: ViewPager2 = view.findViewById(R.id.view_pager)
         viewPager.adapter = sectionsPagerAdapter
+
         val tabs: TabLayout = view.findViewById(R.id.tabs)
         TabLayoutMediator(tabs, viewPager) { tab, pos ->
             tab.text = TAB_TITLES[pos]

@@ -1,12 +1,25 @@
 package com.dikamahard.myunpad.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dikamahard.myunpad.R
 import com.dikamahard.myunpad.databinding.FragmentCategoryBinding
+import com.dikamahard.myunpad.model.Post
+import com.dikamahard.myunpad.repository.FirebaseRepository
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 /**
@@ -22,6 +35,11 @@ class CategoryFragment : Fragment() {
     }
 
     private lateinit var binding: FragmentCategoryBinding
+    private val db = Firebase.database
+    private val mAuth = FirebaseAuth.getInstance()
+    private val repo = FirebaseRepository(mAuth, db)
+
+    private lateinit var viewModel: CategoryViewModel
 
 
     override fun onCreateView(
@@ -36,20 +54,57 @@ class CategoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProvider(requireActivity())[CategoryViewModel::class.java]
+
+        val layoutManager = LinearLayoutManager(requireActivity())
+        binding.rvPost.layoutManager = layoutManager
+
         if(arguments?.getInt(POSITION) == 0) {
             // info kampus
-            binding.tvCategory.text = "Informasi Kampus"
+            //binding.tvCategory.text = "Informasi Kampus"
+
+
+//            CoroutineScope(Dispatchers.Main).launch {
+//                val adapter = PostAdapter(repo.getPost())
+//                binding.rvPost.adapter = adapter
+//            }
+            viewModel.getPostKampus()
+
+            viewModel.listPostKampus.observe(requireActivity()){ listPost ->
+                val adapter = PostAdapter(listPost)
+                binding.rvPost.adapter = adapter
+            }
+
+
+
 
         } else if (arguments?.getInt(POSITION) == 1) {
             // info fakultas
-            binding.tvCategory.text = "Informasi Fakultas"
+            //binding.tvCategory.text = "Informasi Fakultas"
+            viewModel.getPostFakultas()
+
+            viewModel.listPostFakultas.observe(requireActivity()) { listPost ->
+                val adapter = PostAdapter(listPost)
+                binding.rvPost.adapter = adapter
+            }
 
 
         }else if (arguments?.getInt(POSITION) == 2) {
             // info prodi
-            binding.tvCategory.text = "Informasi Prodi"
+            //binding.tvCategory.text = "Informasi Prodi"
+            viewModel.getPostProdi()
+
+            viewModel.listPostProdi.observe(requireActivity()) { listPost ->
+                val adapter = PostAdapter(listPost)
+                binding.rvPost.adapter = adapter
+            }
 
         }
+
+//        binding.rvPost.apply {
+//            layoutManager = LinearLayoutManager(context)
+//            adapter = PostAdapter(repo.getPost())
+//        }
 
     }
 

@@ -58,12 +58,97 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_konten" />
 
+    <!--    <Button-->
+<!--        android:id="@+id/btn_kampus"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="28dp"-->
+<!--        android:layout_marginTop="28dp"-->
+<!--        android:background="@drawable/button_selector"-->
+<!--        android:text="Kampus"-->
+<!--        android:clickable="true"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/btn_upload" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btn_fakultas"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="28dp"-->
+<!--        android:background="@drawable/button_selector"-->
+<!--        android:text="Fakultas"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/btn_kampus"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/btn_upload" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btn_prodi"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="24dp"-->
+<!--        android:layout_marginTop="28dp"-->
+<!--        android:background="@drawable/button_selector"-->
+<!--        android:text="Prodi"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/btn_fakultas"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/btn_upload" />-->
+
+    <RadioGroup
+        android:id="@+id/rg_kategori"
+        android:layout_width="match_parent"
+        android:layout_height="77dp"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_konten">
+
+        <RadioButton
+            android:id="@+id/rb_kampus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:width="120dp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_selector"
+            android:button="@android:color/transparent"
+            android:gravity="center"
+            android:text="Kampus" />
+
+        <RadioButton
+            android:id="@+id/rb_fakultas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:textColor="@color/white"
+            android:width="120dp"
+            android:background="@drawable/button_selector"
+            android:button="@android:color/transparent"
+            android:gravity="center"
+            android:text="Fakultas" />
+
+        <RadioButton
+            android:id="@+id/rb_prodi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:textColor="@color/white"
+            android:width="120dp"
+            android:background="@drawable/button_selector"
+            android:button="@android:color/transparent"
+            android:gravity="center"
+            android:text="Prodi" />
+
+    </RadioGroup>
+
     <Button
+        android:id="@+id/btn_upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="44dp"
         android:text="Unggah"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_konten" />
+        app:layout_constraintTop_toBottomOf="@+id/rg_kategori" />
 </androidx.constraintlayout.widget.ConstraintLayout>

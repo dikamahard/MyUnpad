@@ -7,4 +7,30 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_add_post">Add Post</string>
     <string name="title_profile">Profile</string>
+
+
+    <string-array name="fakultas_array">
+        <item>FH</item>
+        <item>FEB</item>
+        <item>FK</item>
+        <item>FMIPA</item>
+        <item>FAPERTA</item>
+        <item>FKG</item>
+        <item>FISIP</item>
+        <item>FIB</item>
+        <item>FAPSI</item>
+        <item>FAPET</item>
+        <item>FIKOM</item>
+        <item>FKEP</item>
+        <item>FPIK</item>
+        <item>FTIP</item>
+        <item>FF</item>
+        <item>FTG</item>
+    </string-array>
+
+    <string-array name="prodi_fh_array">
+        <item></item>
+    </string-array>
+
+
 </resources>

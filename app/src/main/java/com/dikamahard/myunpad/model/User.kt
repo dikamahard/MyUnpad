@@ -1,4 +1,4 @@
-package com.dikamahard.myunpad
+package com.dikamahard.myunpad.model
 
 data class User(
     val name: String? = null,
@@ -8,6 +8,7 @@ data class User(
     val bio: String? = null,
     val kontak: String? = null,
     val image: String? = null,
-    val email: String? = null
+    val email: String? = null,
+    val isnew: Boolean = true
 )
 
