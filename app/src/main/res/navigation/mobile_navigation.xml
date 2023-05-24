@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="com.dikamahard.myunpad.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_add_post"
@@ -32,4 +36,22 @@
         android:name="com.dikamahard.myunpad.ui.setting.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.dikamahard.myunpad.ui.home.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="judul"
+            app:argType="string"
+            android:defaultValue="Judul Konten" />
+        <argument
+            android:name="konten"
+            app:argType="string"
+            android:defaultValue="konten post" />
+        <argument
+            android:name="penulis"
+            app:argType="string"
+            android:defaultValue="nama penulis" />
+    </fragment>
 </navigation>

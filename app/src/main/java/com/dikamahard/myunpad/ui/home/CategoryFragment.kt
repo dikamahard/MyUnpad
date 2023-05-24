@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dikamahard.myunpad.R
 import com.dikamahard.myunpad.databinding.FragmentCategoryBinding
@@ -72,6 +73,16 @@ class CategoryFragment : Fragment() {
 
             viewModel.listPostKampus.observe(requireActivity()){ listPost ->
                 val adapter = PostAdapter(listPost)
+                adapter.setOnItemClickCallback(object : PostAdapter.OnItemClickCallback {
+                    override fun onItemClicked(data: Post) {
+                        Log.d(TAG, "onItemClicked: ${data.judul}")
+                        val toDetailPost = HomeFragmentDirections.actionNavigationHomeToDetailFragment()
+                        toDetailPost.judul = data.judul
+                        toDetailPost.konten = data.konten
+                        toDetailPost.penulis = mAuth.currentUser!!.displayName.toString()
+                        findNavController().navigate(toDetailPost)
+                    }
+                })
                 binding.rvPost.adapter = adapter
             }
 
@@ -85,6 +96,16 @@ class CategoryFragment : Fragment() {
 
             viewModel.listPostFakultas.observe(requireActivity()) { listPost ->
                 val adapter = PostAdapter(listPost)
+                adapter.setOnItemClickCallback(object : PostAdapter.OnItemClickCallback {
+                    override fun onItemClicked(data: Post) {
+                        Log.d(TAG, "onItemClicked: ${data.judul}")
+                        val toDetailPost = HomeFragmentDirections.actionNavigationHomeToDetailFragment()
+                        toDetailPost.judul = data.judul
+                        toDetailPost.konten = data.konten
+                        toDetailPost.penulis = mAuth.currentUser!!.displayName.toString()
+                        findNavController().navigate(toDetailPost)
+                    }
+                })
                 binding.rvPost.adapter = adapter
             }
 
@@ -96,6 +117,16 @@ class CategoryFragment : Fragment() {
 
             viewModel.listPostProdi.observe(requireActivity()) { listPost ->
                 val adapter = PostAdapter(listPost)
+                adapter.setOnItemClickCallback(object : PostAdapter.OnItemClickCallback {
+                    override fun onItemClicked(data: Post) {
+                        Log.d(TAG, "onItemClicked: ${data.judul}")
+                        val toDetailPost = HomeFragmentDirections.actionNavigationHomeToDetailFragment()
+                        toDetailPost.judul = data.judul
+                        toDetailPost.konten = data.konten
+                        toDetailPost.penulis = mAuth.currentUser!!.displayName.toString()
+                        findNavController().navigate(toDetailPost)
+                    }
+                })
                 binding.rvPost.adapter = adapter
             }
 

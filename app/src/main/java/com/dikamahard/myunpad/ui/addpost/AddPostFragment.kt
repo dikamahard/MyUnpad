@@ -59,9 +59,9 @@ class AddPostFragment : Fragment() {
             lateinit var kategori: String
 
             when(id) {
-                binding.rbKampus.id -> kategori = "Kampus"
-                binding.rbFakultas.id -> kategori = "Fakultas"
-                binding.rbProdi.id -> kategori = "Prodi"
+                binding.rbKampus.id -> kategori = "kampus"
+                binding.rbFakultas.id -> kategori = "fakultas"
+                binding.rbProdi.id -> kategori = "prodi"
             }
             val title = binding.etJudul.text.toString()
             val content = binding.etKonten.text.toString()

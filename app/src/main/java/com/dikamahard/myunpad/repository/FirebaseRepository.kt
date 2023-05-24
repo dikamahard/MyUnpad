@@ -16,7 +16,10 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.database.ktx.values
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class FirebaseRepository(auth: FirebaseAuth, db: FirebaseDatabase) {
 
@@ -73,12 +76,13 @@ class FirebaseRepository(auth: FirebaseAuth, db: FirebaseDatabase) {
         val uId = userAuth!!.uid
         val postId = "$timestamp-$uId"
         val category = post.kategori
+        var categoryId: String? = null
         lateinit var categoryRef: DataSnapshot
 
         // get the spesific category from user profile
         when(category) {
-            "Fakultas" -> categoryRef = dbRef.child(USER).child(uId).child("fakultas").get().await()
-            "Prodi" -> categoryRef = dbRef.child(USER).child(uId).child("prodi").get().await()
+            "fakultas" -> categoryRef = dbRef.child(USER).child(uId).child("fakultas").get().await()
+            "prodi" -> categoryRef = dbRef.child(USER).child(uId).child("prodi").get().await()
             else -> categoryRef = dbRef.child(USER).child(uId).child("kampus").get().await()
         }
         post.kategori = categoryRef.value.toString()
@@ -87,6 +91,52 @@ class FirebaseRepository(auth: FirebaseAuth, db: FirebaseDatabase) {
         dbRef.child(POST).child(postId).setValue(post)
 
         // push to category post db
+            // first we need to find the id of the category from firebase
+
+
+        /*
+        dbRef.child(CATEGORY).child(category!!.lowercase()).orderByChild("name").equalTo(post.kategori).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (data in snapshot.children) {
+                    categoryId = data.key
+                }
+                Log.d("FIREBASEREPO", "createPost id inside single value listener : ${categoryId}")
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle any errors that may occur
+            }
+        })
+         */
+
+
+
+        Log.d("FIREBASEREPO", "kategori =  ${category!!.lowercase()} , detil kategori = ${post.kategori}")
+
+
+        val snapshot = dbRef.child(CATEGORY).child(category!!.lowercase()).orderByChild("name").equalTo(post.kategori).get().await()
+        for (data in snapshot.children) {
+            categoryId = data.key
+            Log.d("FIREBASEREPO", "createPost id : ${data.value.toString()}")// name = fmipa
+            break
+        }
+        Log.d("FIREBASEREPO", "createPost id : ${categoryId}") // f04
+        Log.d("FIREBASEREPO", "createPost id : ${snapshot.key}") // fakultas
+
+        //then push to db
+        val updateCategoryPost = mapOf<String, Boolean>(
+            postId to true
+        )
+        if (categoryId != null) {
+            dbRef.child(CATEGORYPOST).child(categoryId).updateChildren(updateCategoryPost)
+        }
+
+        // push to user post db
+        val updateUserPost = mapOf<String, Boolean>(
+            postId to true
+        )
+        dbRef.child(USERPOST).child(uId).updateChildren(updateUserPost)
+
     }
 
     // getUserFakultas

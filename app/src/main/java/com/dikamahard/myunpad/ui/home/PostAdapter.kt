@@ -10,6 +10,12 @@ import com.dikamahard.myunpad.model.Post
 
 class PostAdapter(private val listPost: List<Post>) : RecyclerView.Adapter<PostAdapter.ViewHolder>() {
 
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val tvJudul: TextView = view.findViewById(R.id.tv_item_title)
         val tvKonten: TextView = view.findViewById(R.id.tv_item_konten)
@@ -22,10 +28,18 @@ class PostAdapter(private val listPost: List<Post>) : RecyclerView.Adapter<PostA
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tvJudul.text = listPost[position].judul
         holder.tvKonten.text = listPost[position].konten
+
+        holder.itemView.setOnClickListener {
+            onItemClickCallback.onItemClicked(listPost[position])
+        }
     }
 
     override fun getItemCount(): Int {
         return listPost.size
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: Post)
     }
 
 }
