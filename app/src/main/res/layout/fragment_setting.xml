@@ -18,7 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#000000" />
 
     <TextView
         android:id="@+id/tv_kontak"
@@ -30,7 +31,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_pengaturan" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_pengaturan"
+        android:textColor="#000000" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/et_kontak"
@@ -42,7 +44,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_kontak" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_kontak"
+        android:background="#EAEAEA"/>
 
     <TextView
         android:id="@+id/tv_bio"
@@ -55,7 +58,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_kontak" />
+        app:layout_constraintTop_toBottomOf="@+id/et_kontak"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:id="@+id/tv_preferensi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="24dp"
+        android:text="Preferensi Notifikasi"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_bio" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/et_bio"
@@ -65,17 +83,46 @@
         android:layout_marginHorizontal="20dp"
         android:hint="Seorang Mahasiswa Tangguh"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_bio" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_bio"
+        android:background="#EAEAEA"/>
 
     <Button
         android:id="@+id/btn_logout"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#FF0000"
+        android:text="Keluar"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Switch
+        android:id="@+id/switch_fakultas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Logout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_bio" />
+        android:text="Fakultas"
+        app:layout_constraintBottom_toBottomOf="@+id/switch_kampus"
+        app:layout_constraintStart_toEndOf="@+id/switch_kampus"
+        app:layout_constraintTop_toTopOf="@+id/switch_kampus" />
+
+    <Switch
+        android:id="@+id/switch_kampus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kampus"
+        app:layout_constraintStart_toStartOf="@+id/tv_preferensi"
+        app:layout_constraintTop_toBottomOf="@+id/tv_preferensi" />
+
+    <Switch
+        android:id="@+id/switch_prodi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Program Studi"
+        app:layout_constraintBottom_toBottomOf="@+id/switch_fakultas"
+        app:layout_constraintStart_toEndOf="@+id/switch_fakultas"
+        app:layout_constraintTop_toTopOf="@+id/switch_fakultas" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
