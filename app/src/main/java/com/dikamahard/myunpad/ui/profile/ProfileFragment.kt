@@ -2,6 +2,7 @@ package com.dikamahard.myunpad.ui.profile
 
 import android.app.DownloadManager.Query
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.TextView
 import android.widget.Toast
@@ -9,15 +10,26 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dikamahard.myunpad.R
 import com.dikamahard.myunpad.databinding.FragmentProfileBinding
+import com.dikamahard.myunpad.model.Post
+import com.dikamahard.myunpad.repository.FirebaseRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 class ProfileFragment : Fragment() {
 
-    private var _binding: FragmentProfileBinding? = null
+    companion object {
+        val TAG = "PROFILEFRAGMENT"
+    }
+
+    //private var _binding: FragmentProfileBinding? = null
     val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
     val db = Firebase.database
 
@@ -26,7 +38,9 @@ class ProfileFragment : Fragment() {
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
+    //private val binding get() = _binding!!
+    private lateinit var binding: FragmentProfileBinding
+    private lateinit var viewModel: ProfileViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,7 +58,9 @@ class ProfileFragment : Fragment() {
         }
         */
 
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+//        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
+
         val root: View = binding.root
 
 
@@ -54,6 +70,8 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(requireActivity())[ProfileViewModel::class.java]
 
         binding.tvName.text = mAuth.currentUser?.displayName
         val userId = mAuth.currentUser!!.uid
@@ -65,6 +83,54 @@ class ProfileFragment : Fragment() {
             binding.tvProdi.text = it.child("prodi").value.toString()
             binding.tvFakultas.text = it.child("fakultas").value.toString()
         }
+
+        binding.rvPublishedPost.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        //binding.rvPublishedPost.adapter = PublishedAdapter()
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val snapshotIdPost = db.reference.child(FirebaseRepository.USERPOST).child(mAuth.currentUser!!.uid).get().await()
+            val postIds = snapshotIdPost.children.map { it.key }
+            Log.d(TAG, "onViewCreated: $postIds")
+
+            viewModel.getPublished()
+        }
+
+        viewModel.listPublishedId.observe(requireActivity()) { listPublhisedId ->
+            Log.d(TAG, "listpublishedid: $listPublhisedId")
+            viewModel.listPublished.observe(requireActivity()) { listPublished ->
+                val adapter = PublishedAdapter(listPublished, listPublhisedId)
+
+                adapter.setOnItemClickCallback(object : PublishedAdapter.OnItemClickCallback {
+                    override fun onItemClicked(data: Post, id: String) {
+                        val toDetailPublished = ProfileFragmentDirections.actionNavigationProfileToDetailPublishedFragment()
+                        toDetailPublished.judul = data.judul
+                        toDetailPublished.konten = data.konten
+                        toDetailPublished.publishedId = id
+                        findNavController().navigate(toDetailPublished)
+                    }
+                })
+
+                binding.rvPublishedPost.adapter = adapter
+            }
+        }
+
+/*
+        viewModel.listPublished.observe(requireActivity()) { listPublished ->
+            val adapter = PublishedAdapter(listPublished)
+            binding.rvPublishedPost.adapter = adapter
+        }
+
+        viewModel.listPublished.observe(requireActivity()) { listPublished ->
+            val adapter = PublishedAdapter(listPublished)
+            binding.rvPublishedPost.adapter = adapter
+        }
+
+ */
+
+
+
+
+
 
     }
 
@@ -87,7 +153,7 @@ class ProfileFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        //_binding = null
     }
 
 }

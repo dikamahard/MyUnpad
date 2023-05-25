@@ -12,6 +12,7 @@ class PostAdapter(private val listPost: List<Post>) : RecyclerView.Adapter<PostA
 
     private lateinit var onItemClickCallback: OnItemClickCallback
 
+
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }

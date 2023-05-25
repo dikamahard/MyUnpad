@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_navigation_profile_to_settingFragment"
             app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_detailPublishedFragment"
+            app:destination="@id/detailPublishedFragment" />
     </fragment>
 
     <fragment
@@ -53,5 +56,23 @@
             android:name="penulis"
             app:argType="string"
             android:defaultValue="nama penulis" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPublishedFragment"
+        android:name="com.dikamahard.myunpad.ui.profile.DetailPublishedFragment"
+        android:label="fragment_detail_published"
+        tools:layout="@layout/fragment_detail_published" >
+        <argument
+            android:name="judul"
+            app:argType="string"
+            android:defaultValue="Judul Published" />
+        <argument
+            android:name="konten"
+            app:argType="string"
+            android:defaultValue="lorem ipsum" />
+        <argument
+            android:name="publishedId"
+            app:argType="string"
+            android:defaultValue="ID Post" />
     </fragment>
 </navigation>
