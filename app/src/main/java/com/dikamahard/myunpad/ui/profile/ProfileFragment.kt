@@ -7,6 +7,7 @@ import android.view.*
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -95,10 +96,12 @@ class ProfileFragment : Fragment() {
             viewModel.getPublished()
         }
 
-        viewModel.listPublishedId.observe(requireActivity()) { listPublhisedId ->
-            Log.d(TAG, "listpublishedid: $listPublhisedId")
-            viewModel.listPublished.observe(requireActivity()) { listPublished ->
-                val adapter = PublishedAdapter(listPublished, listPublhisedId)
+
+
+        viewModel.listPublished.observe(viewLifecycleOwner) { listPublhised ->
+            Log.d(TAG, "listpublishedid: $listPublhised")
+            viewModel.listPublishedId.observe(viewLifecycleOwner) { listPublishedId ->
+                val adapter = PublishedAdapter(listPublhised, listPublishedId)
 
                 adapter.setOnItemClickCallback(object : PublishedAdapter.OnItemClickCallback {
                     override fun onItemClicked(data: Post, id: String) {
@@ -113,6 +116,8 @@ class ProfileFragment : Fragment() {
                 binding.rvPublishedPost.adapter = adapter
             }
         }
+
+
 
 /*
         viewModel.listPublished.observe(requireActivity()) { listPublished ->

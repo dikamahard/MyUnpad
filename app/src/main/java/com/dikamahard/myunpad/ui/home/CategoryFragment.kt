@@ -71,7 +71,7 @@ class CategoryFragment : Fragment() {
 //            }
             viewModel.getPostKampus()
 
-            viewModel.listPostKampus.observe(requireActivity()){ listPost ->
+            viewModel.listPostKampus.observe(viewLifecycleOwner){ listPost ->
                 val adapter = PostAdapter(listPost)
                 adapter.setOnItemClickCallback(object : PostAdapter.OnItemClickCallback {
                     override fun onItemClicked(data: Post) {
@@ -94,7 +94,7 @@ class CategoryFragment : Fragment() {
             //binding.tvCategory.text = "Informasi Fakultas"
             viewModel.getPostFakultas(viewModel.getFakultas())
 
-            viewModel.listPostFakultas.observe(requireActivity()) { listPost ->
+            viewModel.listPostFakultas.observe(viewLifecycleOwner) { listPost ->
                 val adapter = PostAdapter(listPost)
                 adapter.setOnItemClickCallback(object : PostAdapter.OnItemClickCallback {
                     override fun onItemClicked(data: Post) {
@@ -115,7 +115,7 @@ class CategoryFragment : Fragment() {
             //binding.tvCategory.text = "Informasi Prodi"
             viewModel.getPostProdi(viewModel.getProdi())
 
-            viewModel.listPostProdi.observe(requireActivity()) { listPost ->
+            viewModel.listPostProdi.observe(viewLifecycleOwner) { listPost ->
                 val adapter = PostAdapter(listPost)
                 adapter.setOnItemClickCallback(object : PostAdapter.OnItemClickCallback {
                     override fun onItemClicked(data: Post) {
