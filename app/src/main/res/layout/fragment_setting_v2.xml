@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textPreferensi" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_logout"
         android:layout_width="196dp"
         android:layout_height="44dp"
         android:layout_marginBottom="40dp"
@@ -60,36 +60,36 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageButton
-        android:id="@+id/beranda_button"
-        android:layout_width="65dp"
-        android:layout_height="64dp"
-        android:backgroundTint="#00FFFFFF"
-        android:scaleType="fitXY"
-        android:scaleX="1"
-        app:srcCompat="@drawable/beranda_icon"
-        tools:layout_editor_absoluteX="101dp"
-        tools:layout_editor_absoluteY="716dp" />
+<!--    <ImageButton-->
+<!--        android:id="@+id/beranda_button"-->
+<!--        android:layout_width="65dp"-->
+<!--        android:layout_height="64dp"-->
+<!--        android:backgroundTint="#00FFFFFF"-->
+<!--        android:scaleType="fitXY"-->
+<!--        android:scaleX="1"-->
+<!--        app:srcCompat="@drawable/beranda_icon"-->
+<!--        tools:layout_editor_absoluteX="101dp"-->
+<!--        tools:layout_editor_absoluteY="716dp" />-->
 
-    <ImageButton
-        android:id="@+id/imageButton9"
-        android:layout_width="50dp"
-        android:layout_height="63dp"
-        android:backgroundTint="#00FFFFFF"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/profil_icon"
-        tools:layout_editor_absoluteX="233dp"
-        tools:layout_editor_absoluteY="716dp" />
+<!--    <ImageButton-->
+<!--        android:id="@+id/imageButton9"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="63dp"-->
+<!--        android:backgroundTint="#00FFFFFF"-->
+<!--        android:scaleType="fitXY"-->
+<!--        app:srcCompat="@drawable/profil_icon"-->
+<!--        tools:layout_editor_absoluteX="233dp"-->
+<!--        tools:layout_editor_absoluteY="716dp" />-->
 
-    <ImageButton
-        android:id="@+id/imageButton11"
-        android:layout_width="60dp"
-        android:layout_height="57dp"
-        android:backgroundTint="#00FFFFFF"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/add_icon"
-        tools:layout_editor_absoluteX="166dp"
-        tools:layout_editor_absoluteY="716dp" />
+<!--    <ImageButton-->
+<!--        android:id="@+id/imageButton11"-->
+<!--        android:layout_width="60dp"-->
+<!--        android:layout_height="57dp"-->
+<!--        android:backgroundTint="#00FFFFFF"-->
+<!--        android:scaleType="fitXY"-->
+<!--        app:srcCompat="@drawable/add_icon"-->
+<!--        tools:layout_editor_absoluteX="166dp"-->
+<!--        tools:layout_editor_absoluteY="716dp" />-->
 
     <TextView
         android:id="@+id/textKontak"
@@ -155,10 +155,12 @@
         android:id="@+id/imageButton14"
         android:layout_width="139dp"
         android:layout_height="55dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/back_button"
-        tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="45dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

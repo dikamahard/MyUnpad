@@ -18,7 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#000000" />
 
     <TextView
         android:id="@+id/tv_kontak"
@@ -30,7 +31,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_pengaturan" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_pengaturan"
+        android:textColor="#000000"/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/et_kontak"
@@ -42,7 +44,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_kontak" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_kontak"
+        android:background="#EAEAEA"/>
 
     <TextView
         android:id="@+id/tv_bio"
@@ -55,7 +58,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_kontak" />
+        app:layout_constraintTop_toBottomOf="@+id/et_kontak"
+        android:textColor="#000000"/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/et_bio"
@@ -65,17 +69,20 @@
         android:layout_marginHorizontal="20dp"
         android:hint="Seorang Mahasiswa Tangguh"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_bio" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_bio"
+        android:background="#EAEAEA"/>
 
     <Button
         android:id="@+id/btn_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Logout"
+        android:text="Keluar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_bio" />
+        app:layout_constraintTop_toBottomOf="@+id/et_bio"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#FF0000"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
