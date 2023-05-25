@@ -26,19 +26,20 @@
         android:id="@+id/tv_judul"
         android:layout_width="388dp"
         android:layout_height="19dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="32dp"
         android:text="Judul "
         android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.391"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_buatpost" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/et_judul"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_judul" />
 
@@ -80,29 +81,34 @@
         android:id="@+id/tv_konten"
         android:layout_width="400dp"
         android:layout_height="24dp"
+        android:layout_marginTop="20dp"
         android:text="Deskripsi"
         android:textColor="#000000"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="364dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_unggahfoto" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/et_konten"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="-3dp"
-        tools:layout_editor_absoluteY="388dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_konten" />
 
     <TextView
         android:id="@+id/iv_buatpost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="Buat Post"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="153dp"
-        tools:layout_editor_absoluteY="29dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_unggahfoto"
@@ -111,9 +117,11 @@
         android:text="Unggah Foto"
         app:cornerRadius="30dp"
         app:iconTint="#D8D8D8"
-        app:rippleColor="#D8D8D8"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="300dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:rippleColor="#D8D8D8" />
 
     <Button
         android:id="@+id/btn_upload"
@@ -183,13 +191,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.024"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="453dp" />
+        app:layout_constraintTop_toBottomOf="@+id/et_konten" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="9dp"
-        tools:layout_editor_absoluteY="164dp"
-        tools:src="@tools:sample/avatars" />
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_baseline_profile_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_judul" />
 </androidx.constraintlayout.widget.ConstraintLayout>
