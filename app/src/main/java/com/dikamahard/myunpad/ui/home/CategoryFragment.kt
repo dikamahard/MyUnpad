@@ -79,7 +79,7 @@ class CategoryFragment : Fragment() {
                         val toDetailPost = HomeFragmentDirections.actionNavigationHomeToDetailFragment()
                         toDetailPost.judul = data.judul
                         toDetailPost.konten = data.konten
-                        toDetailPost.penulis = mAuth.currentUser!!.displayName.toString()
+                        toDetailPost.penulis = data.penulis
                         findNavController().navigate(toDetailPost)
                     }
                 })
@@ -102,7 +102,7 @@ class CategoryFragment : Fragment() {
                         val toDetailPost = HomeFragmentDirections.actionNavigationHomeToDetailFragment()
                         toDetailPost.judul = data.judul
                         toDetailPost.konten = data.konten
-                        toDetailPost.penulis = mAuth.currentUser!!.displayName.toString()
+                        toDetailPost.penulis = data.penulis
                         findNavController().navigate(toDetailPost)
                     }
                 })
@@ -123,7 +123,7 @@ class CategoryFragment : Fragment() {
                         val toDetailPost = HomeFragmentDirections.actionNavigationHomeToDetailFragment()
                         toDetailPost.judul = data.judul
                         toDetailPost.konten = data.konten
-                        toDetailPost.penulis = mAuth.currentUser!!.displayName.toString()
+                        toDetailPost.penulis = data.penulis
                         findNavController().navigate(toDetailPost)
                     }
                 })

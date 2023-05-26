@@ -74,5 +74,26 @@
             android:name="publishedId"
             app:argType="string"
             android:defaultValue="ID Post" />
+        <action
+            android:id="@+id/action_detailPublishedFragment_to_editFragment"
+            app:destination="@id/editFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="com.dikamahard.myunpad.ui.profile.EditFragment"
+        android:label="fragment_edit"
+        tools:layout="@layout/fragment_edit" >
+        <argument
+            android:name="judul"
+            app:argType="string"
+            android:defaultValue="Judul Published"/>
+        <argument
+            android:name="konten"
+            app:argType="string"
+            android:defaultValue="Lorem Ipsum Dolor" />
+        <argument
+            android:name="postId"
+            app:argType="string"
+            android:defaultValue="ID Post" />
     </fragment>
 </navigation>

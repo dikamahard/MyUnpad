@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.dikamahard.myunpad.databinding.FragmentAddPostBinding
 import com.dikamahard.myunpad.model.Post
 import com.dikamahard.myunpad.repository.FirebaseRepository
@@ -72,6 +73,8 @@ class AddPostFragment : Fragment() {
             val post = Post(judul = title, konten = content, penulis!!, kategori = kategori)
             CoroutineScope(Dispatchers.Main).launch {
                 repo.createPost(post)
+                //requireActivity().finish()
+                findNavController().popBackStack()
                 Toast.makeText(context, "Post Berhasil", Toast.LENGTH_SHORT).show()
             }
 

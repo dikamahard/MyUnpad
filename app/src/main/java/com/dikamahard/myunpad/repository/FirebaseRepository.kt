@@ -123,7 +123,7 @@ class FirebaseRepository(auth: FirebaseAuth, db: FirebaseDatabase) {
         Log.d("FIREBASEREPO", "createPost id : ${categoryId}") // f04
         Log.d("FIREBASEREPO", "createPost id : ${snapshot.key}") // fakultas
 
-        //then push to db
+        //then push to categoryPost db
         val updateCategoryPost = mapOf<String, Boolean>(
             postId to true
         )
