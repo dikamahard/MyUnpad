@@ -78,7 +78,7 @@
     <!--        app:layout_constraintTop_toBottomOf="@+id/btn_upload" />-->
 
     <TextView
-        android:id="@+id/tv_konten"
+        android:id="@+id/tv_dipublikasikan"
         android:layout_width="400dp"
         android:layout_height="24dp"
         android:layout_marginTop="20dp"
@@ -94,7 +94,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_konten" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_dipublikasikan" />
 
     <TextView
         android:id="@+id/iv_buatpost"
