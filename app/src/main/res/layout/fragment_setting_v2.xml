@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.setting.SettingFragment">
+
+    <TextView
+        android:id="@+id/textPengaturan"
+        android:layout_width="137dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Pengaturan"
+        android:textColor="#000000"
+        android:textSize="24dp"
+        app:layout_constraintStart_toStartOf="@+id/imageButton14"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton14" />
+
+    <Switch
+        android:id="@+id/switch3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Program Studi"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/switch2"
+        app:layout_constraintStart_toEndOf="@+id/switch2"
+        app:layout_constraintTop_toTopOf="@+id/switch2" />
+
+    <Switch
+        android:id="@+id/switch2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fakultas"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/switch1"
+        app:layout_constraintStart_toEndOf="@+id/switch1"
+        app:layout_constraintTop_toTopOf="@+id/switch1" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kampus"
+        android:textSize="12dp"
+        app:layout_constraintStart_toStartOf="@+id/textPreferensi"
+        app:layout_constraintTop_toBottomOf="@+id/textPreferensi" />
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="196dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="#FF0000"
+        android:text="Keluar"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/beranda_button"-->
+<!--        android:layout_width="65dp"-->
+<!--        android:layout_height="64dp"-->
+<!--        android:backgroundTint="#00FFFFFF"-->
+<!--        android:scaleType="fitXY"-->
+<!--        android:scaleX="1"-->
+<!--        app:srcCompat="@drawable/beranda_icon"-->
+<!--        tools:layout_editor_absoluteX="101dp"-->
+<!--        tools:layout_editor_absoluteY="716dp" />-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/imageButton9"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="63dp"-->
+<!--        android:backgroundTint="#00FFFFFF"-->
+<!--        android:scaleType="fitXY"-->
+<!--        app:srcCompat="@drawable/profil_icon"-->
+<!--        tools:layout_editor_absoluteX="233dp"-->
+<!--        tools:layout_editor_absoluteY="716dp" />-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/imageButton11"-->
+<!--        android:layout_width="60dp"-->
+<!--        android:layout_height="57dp"-->
+<!--        android:backgroundTint="#00FFFFFF"-->
+<!--        android:scaleType="fitXY"-->
+<!--        app:srcCompat="@drawable/add_icon"-->
+<!--        tools:layout_editor_absoluteX="166dp"-->
+<!--        tools:layout_editor_absoluteY="716dp" />-->
+
+    <TextView
+        android:id="@+id/textKontak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="44dp"
+        android:text="Kontak (opsional)"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/textPengaturan"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageButton14"
+        app:layout_constraintTop_toBottomOf="@+id/textPengaturan" />
+
+    <TextView
+        android:id="@+id/textPreferensi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Preferensi Notifikasi"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="@+id/et_bio"
+        app:layout_constraintTop_toBottomOf="@+id/et_bio" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_kontak"
+        android:layout_width="353dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="28dp"
+        android:background="#EAEAEA"
+        android:hint="09123123123"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textKontak"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textKontak"
+        app:layout_constraintTop_toBottomOf="@+id/textKontak"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_bio"
+        android:layout_width="354dp"
+        android:layout_height="32dp"
+        android:background="#EAEAEA"
+        android:hint="Seorang Mahasiswa Tangguh"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/et_kontak"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textBio"
+        app:layout_constraintTop_toBottomOf="@+id/textBio" />
+
+    <TextView
+        android:id="@+id/textBio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Bio (opsional)"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="@+id/et_kontak"
+        app:layout_constraintTop_toBottomOf="@+id/et_kontak" />
+
+    <ImageButton
+        android:id="@+id/imageButton14"
+        android:layout_width="139dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_button" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
