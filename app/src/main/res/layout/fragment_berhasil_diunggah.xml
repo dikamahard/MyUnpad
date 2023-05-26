@@ -4,4 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.setting.SettingFragment"/>
+    tools:context=".ui.setting.SettingFragment">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/img_berhasil_diunggah"
+        tools:layout_editor_absoluteX="236dp"
+        tools:layout_editor_absoluteY="247dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
