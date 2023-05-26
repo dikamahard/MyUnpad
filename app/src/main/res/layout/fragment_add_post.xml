@@ -35,14 +35,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_buatpost" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_judul"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_judul" />
-
     <!--    <Button-->
     <!--        android:id="@+id/btn_kampus"-->
     <!--        android:layout_width="wrap_content"-->
@@ -77,10 +69,19 @@
     <!--        app:layout_constraintStart_toEndOf="@+id/btn_fakultas"-->
     <!--        app:layout_constraintTop_toBottomOf="@+id/btn_upload" />-->
 
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_judul"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_judul" />
+
     <TextView
         android:id="@+id/tv_dipublikasikan"
-        android:layout_width="400dp"
-        android:layout_height="24dp"
+        android:layout_width="396dp"
+        android:layout_height="23dp"
         android:layout_marginTop="20dp"
         android:text="Deskripsi"
         android:textColor="#000000"
@@ -112,10 +113,12 @@
 
     <Button
         android:id="@+id/btn_unggahfoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="112dp"
+        android:layout_height="34dp"
+        android:background="#EBEBEB"
         android:text="Unggah Foto"
-        app:cornerRadius="30dp"
+        android:textSize="10sp"
+        app:cornerRadius="50dp"
         app:iconTint="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.044"
@@ -125,8 +128,8 @@
 
     <Button
         android:id="@+id/btn_upload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="230dp"
+        android:layout_height="41dp"
         android:layout_marginTop="48dp"
         android:text="Unggah"
         app:layout_constraintEnd_toEndOf="parent"
@@ -138,6 +141,7 @@
         android:id="@+id/rg_kategori"
         android:layout_width="match_parent"
         android:layout_height="77dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/iv_pilihkategori"
@@ -153,7 +157,8 @@
             android:button="@android:color/transparent"
             android:gravity="center"
             android:text="Kampus"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/rb_fakultas"
@@ -165,7 +170,8 @@
             android:button="@android:color/transparent"
             android:gravity="center"
             android:text="Fakultas"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/rb_prodi"
@@ -177,7 +183,8 @@
             android:button="@android:color/transparent"
             android:gravity="center"
             android:text="Prodi"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
     </RadioGroup>
 
@@ -185,6 +192,7 @@
         android:id="@+id/iv_pilihkategori"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Pilih Kategori"
         android:textColor="#000000"
         android:textStyle="bold"
@@ -200,7 +208,7 @@
         android:layout_marginTop="20dp"
         android:src="@drawable/ic_baseline_profile_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_judul" />
 </androidx.constraintlayout.widget.ConstraintLayout>
