@@ -80,6 +80,7 @@ class CategoryFragment : Fragment() {
                         toDetailPost.judul = data.judul
                         toDetailPost.konten = data.konten
                         toDetailPost.penulis = data.penulis
+                        toDetailPost.gambar = data.gambar.toString()
                         findNavController().navigate(toDetailPost)
                     }
                 })
@@ -103,6 +104,7 @@ class CategoryFragment : Fragment() {
                         toDetailPost.judul = data.judul
                         toDetailPost.konten = data.konten
                         toDetailPost.penulis = data.penulis
+                        toDetailPost.gambar = data.gambar.toString()
                         findNavController().navigate(toDetailPost)
                     }
                 })
@@ -124,6 +126,7 @@ class CategoryFragment : Fragment() {
                         toDetailPost.judul = data.judul
                         toDetailPost.konten = data.konten
                         toDetailPost.penulis = data.penulis
+                        toDetailPost.gambar = data.gambar.toString()
                         findNavController().navigate(toDetailPost)
                     }
                 })

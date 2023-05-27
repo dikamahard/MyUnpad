@@ -1,11 +1,13 @@
 package com.dikamahard.myunpad.repository
 
 import android.app.Application
+import android.net.Uri
 import android.provider.ContactsContract.Data
 import android.util.Log
 import android.widget.Toast
 import com.dikamahard.myunpad.model.Post
 import com.dikamahard.myunpad.model.User
+import com.dikamahard.myunpad.ui.addpost.AddPostFragment
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -16,6 +18,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.database.ktx.values
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
@@ -25,6 +28,8 @@ class FirebaseRepository(auth: FirebaseAuth, db: FirebaseDatabase) {
 
     val userAuth = auth.currentUser
     val dbRef = db.reference
+    val storage = Firebase.storage
+
 
 
     // List of child node from root reference
@@ -71,10 +76,11 @@ class FirebaseRepository(auth: FirebaseAuth, db: FirebaseDatabase) {
     }
 
     // CreatePost
-    suspend fun createPost(post: Post) {
+    suspend fun createPost(post: Post, imageUri: Uri) {
         val timestamp = System.currentTimeMillis().toString()
         val uId = userAuth!!.uid
         val postId = "$timestamp-$uId"
+        val imageId = postId
         val category = post.kategori
         var categoryId: String? = null
         lateinit var categoryRef: DataSnapshot
@@ -86,6 +92,8 @@ class FirebaseRepository(auth: FirebaseAuth, db: FirebaseDatabase) {
             else -> categoryRef = dbRef.child(USER).child(uId).child("kampus").get().await()
         }
         post.kategori = categoryRef.value.toString()
+        post.gambar = imageId
+
 
         // push to post db
         dbRef.child(POST).child(postId).setValue(post)
@@ -136,6 +144,18 @@ class FirebaseRepository(auth: FirebaseAuth, db: FirebaseDatabase) {
             postId to true
         )
         dbRef.child(USERPOST).child(uId).updateChildren(updateUserPost)
+
+        // upload image
+        val storageRef = storage.reference.child("post/$imageId")
+        storageRef.putFile(imageUri).addOnSuccessListener {
+            Log.d(AddPostFragment.TAG, "onViewCreated: BERHASIL IMAGE")
+
+        }.addOnFailureListener {
+            Log.d(AddPostFragment.TAG, "onViewCreated: GAGAL IMAGE")
+        }
+
+
+
 
     }
 

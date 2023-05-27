@@ -56,6 +56,10 @@
             android:name="penulis"
             app:argType="string"
             android:defaultValue="nama penulis" />
+        <argument
+            android:name="gambar"
+            app:argType="string"
+            android:defaultValue="doge_cp" />
     </fragment>
     <fragment
         android:id="@+id/detailPublishedFragment"

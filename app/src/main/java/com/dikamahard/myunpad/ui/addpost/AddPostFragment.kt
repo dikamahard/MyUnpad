@@ -31,15 +31,14 @@ class AddPostFragment : Fragment() {
         val TAG = "ADDPOSTFRAGMENT"
     }
 
-    private var _binding: FragmentAddPostBinding? = null
+    private lateinit var binding: FragmentAddPostBinding
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
+    //private val binding get() = _binding!!
 
     val db = Firebase.database
     val mAUth = FirebaseAuth.getInstance()
-    val storageRef = Firebase.storage.reference
 
     lateinit var imageUri: Uri
 
@@ -50,7 +49,7 @@ class AddPostFragment : Fragment() {
     ): View {
         val addPostViewModel = ViewModelProvider(this).get(AddPostViewModel::class.java)
 
-        _binding = FragmentAddPostBinding.inflate(inflater, container, false)
+        binding = FragmentAddPostBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
 //        val textView: TextView = binding.textDashboard
@@ -71,7 +70,6 @@ class AddPostFragment : Fragment() {
 
 
         binding.btnUpload.setOnClickListener {
-
             val id = binding.rgKategori.checkedRadioButtonId
             lateinit var kategori: String
 
@@ -88,34 +86,26 @@ class AddPostFragment : Fragment() {
 
             val post = Post(judul = title, konten = content, penulis!!, kategori = kategori)
             CoroutineScope(Dispatchers.Main).launch {
-                repo.createPost(post)
+                repo.createPost(post, imageUri)
                 //requireActivity().finish()
                 findNavController().popBackStack()
                 Toast.makeText(context, "Post Berhasil", Toast.LENGTH_SHORT).show()
             }
 
-            // upload image
 
-            storageRef.child("post/test")
-            storageRef.putFile(imageUri).addOnSuccessListener {
-                Log.d(TAG, "onViewCreated: BERHASIL IMAGE")
-                binding.ivGambar.setImageURI(null)
-            }.addOnFailureListener {
-                Log.d(TAG, "onViewCreated: GAGAL IMAGE")  
-            }
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        //_binding = null
     }
 
     private fun selectImage() {
 
         val intent = Intent()
         intent.apply {
-            type = "images/*"
+            type = "image/*"
             action = Intent.ACTION_GET_CONTENT
         }
 

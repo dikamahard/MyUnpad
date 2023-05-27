@@ -156,10 +156,11 @@ class CategoryViewModel : ViewModel() {
                     val judul = post.child("judul").value.toString()
                     val konten = post.child("konten").value.toString()
                     val penulis = post.child("penulis").value.toString()
+                    val gambar = post.child("gambar").value.toString()
                     Log.d("GETPOST", "id = ${postId}")
 
 
-                    val postObject = Post(judul, konten, penulis)
+                    val postObject = Post(judul, konten, penulis, gambar = gambar)
                     listPost.add(0, postObject)
                     _listPostKampus.value = listPost
                 }

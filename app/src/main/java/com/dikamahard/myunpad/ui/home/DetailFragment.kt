@@ -6,12 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
+import com.bumptech.glide.Glide
 import com.dikamahard.myunpad.R
 import com.dikamahard.myunpad.databinding.FragmentDetailBinding
 import com.dikamahard.myunpad.repository.FirebaseRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -25,6 +28,8 @@ class DetailFragment : Fragment() {
     }
     private val db = Firebase.database
     private val mAuth = FirebaseAuth.getInstance()
+    val storage = Firebase.storage
+
 
     private lateinit var binding: FragmentDetailBinding
 
@@ -44,6 +49,9 @@ class DetailFragment : Fragment() {
         Log.d(TAG, "onViewCreated: $judul")
         val konten = DetailFragmentArgs.fromBundle(arguments as Bundle).konten
         val penulisId = DetailFragmentArgs.fromBundle(arguments as Bundle).penulis
+        val gambar = DetailFragmentArgs.fromBundle(arguments as Bundle).gambar
+        Log.d(TAG, "onViewCreated: GAMBAR = $gambar")
+
 
 
         CoroutineScope(Dispatchers.Main).launch {
@@ -53,6 +61,14 @@ class DetailFragment : Fragment() {
             binding.tvJudul.text = judul
             binding.tvKonten.text = konten
             binding.tvPenulis.text = penulisNama.value.toString()
+            val imageRef = storage.reference.child("post/$gambar")
+            imageRef.downloadUrl.addOnSuccessListener { uri ->
+                val imgUrl = uri.toString()
+                Glide.with(requireContext())
+                    .load(imgUrl)
+                    .into(binding.ivPostdetail)
+
+            }
         }
 
 
