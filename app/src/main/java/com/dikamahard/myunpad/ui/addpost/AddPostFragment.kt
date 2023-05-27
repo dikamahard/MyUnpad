@@ -1,5 +1,8 @@
 package com.dikamahard.myunpad.ui.addpost
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,11 +19,17 @@ import com.dikamahard.myunpad.repository.FirebaseRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class AddPostFragment : Fragment() {
+
+    companion object {
+        val TAG = "ADDPOSTFRAGMENT"
+    }
 
     private var _binding: FragmentAddPostBinding? = null
 
@@ -30,6 +39,9 @@ class AddPostFragment : Fragment() {
 
     val db = Firebase.database
     val mAUth = FirebaseAuth.getInstance()
+    val storageRef = Firebase.storage.reference
+
+    lateinit var imageUri: Uri
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,6 +63,10 @@ class AddPostFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnUnggahfoto.setOnClickListener {
+            selectImage()
+        }
 
 
 
@@ -78,12 +94,41 @@ class AddPostFragment : Fragment() {
                 Toast.makeText(context, "Post Berhasil", Toast.LENGTH_SHORT).show()
             }
 
+            // upload image
 
+            storageRef.child("post/test")
+            storageRef.putFile(imageUri).addOnSuccessListener {
+                Log.d(TAG, "onViewCreated: BERHASIL IMAGE")
+                binding.ivGambar.setImageURI(null)
+            }.addOnFailureListener {
+                Log.d(TAG, "onViewCreated: GAGAL IMAGE")  
+            }
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun selectImage() {
+
+        val intent = Intent()
+        intent.apply {
+            type = "images/*"
+            action = Intent.ACTION_GET_CONTENT
+        }
+
+        startActivityForResult(intent,100)
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 100 && resultCode == RESULT_OK) {
+            imageUri = data?.data!!
+            binding.ivGambar.setImageURI(imageUri)
+        }
     }
 }
