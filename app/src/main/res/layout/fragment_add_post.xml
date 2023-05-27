@@ -20,45 +20,64 @@
             android:fontFamily="@font/bold"
             android:text="Judul "
             android:textColor="#000000"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_buatpost" />
 
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_judul"
             android:layout_width="382dp"
-            android:layout_height="43dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:background="#EBEBEB"
             android:fontFamily="@font/light"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="10dp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.842"
+            app:layout_constraintStart_toStartOf="@+id/tv_judul"
             app:layout_constraintTop_toBottomOf="@+id/tv_judul" />
-
 
         <TextView
             android:id="@+id/tv_konten"
-            android:layout_width="400dp"
-            android:layout_height="24dp"
+            android:layout_width="340dp"
+            android:layout_height="23dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/bold"
             android:text="Deskripsi"
             android:textColor="#000000"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_unggahfoto" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_konten"
             android:layout_width="391dp"
-            android:layout_height="43dp"
-            android:layout_marginStart="12dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:background="#EBEBEB"
             android:fontFamily="@font/light"
-            app:layout_constraintStart_toStartOf="parent"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="10dp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.571"
+            app:layout_constraintStart_toStartOf="@+id/tv_konten"
             app:layout_constraintTop_toBottomOf="@+id/tv_konten" />
 
         <TextView
@@ -80,6 +99,7 @@
             android:id="@+id/btn_unggahfoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:fontFamily="@font/semibold"
             android:foregroundTint="#EBEBEB"
             android:text="Unggah Foto"
@@ -87,7 +107,7 @@
             app:cornerRadius="30dp"
             app:iconTint="#D8D8D8"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.044"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_gambar"
             app:rippleColor="#D8D8D8" />
@@ -96,7 +116,9 @@
             android:id="@+id/btn_upload"
             android:layout_width="272dp"
             android:layout_height="46dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="48dp"
+            android:layout_marginEnd="20dp"
             android:fontFamily="@font/bold"
             android:text="Unggah"
             android:textAllCaps="false"
@@ -110,12 +132,11 @@
             android:id="@+id/rg_kategori"
             android:layout_width="380dp"
             android:layout_height="71dp"
-            android:layout_marginTop="8dp"
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.483"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/iv_pilihkategori"
             app:layout_constraintTop_toBottomOf="@+id/iv_pilihkategori">
 
             <RadioButton
@@ -129,7 +150,8 @@
                 android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:text="Kampus"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="14sp" />
 
             <RadioButton
                 android:id="@+id/rb_fakultas"
@@ -142,7 +164,8 @@
                 android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:text="Fakultas"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="14sp" />
 
             <RadioButton
                 android:id="@+id/rb_prodi"
@@ -155,7 +178,8 @@
                 android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:text="Prodi"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="14sp" />
 
         </RadioGroup>
 
@@ -168,6 +192,7 @@
             android:fontFamily="@font/bold"
             android:text="Pilih Kategori"
             android:textColor="#000000"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -181,7 +206,7 @@
             android:layout_marginTop="20dp"
             android:src="@drawable/ic_baseline_profile_24"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.08"
+            app:layout_constraintHorizontal_bias="0.099"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_judul" />
 
