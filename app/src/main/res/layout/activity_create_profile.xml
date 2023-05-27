@@ -16,10 +16,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
+            android:fontFamily="@font/bold"
             android:gravity="center"
             android:text="Profil"
             android:textColor="#FFC031"
-            android:textSize="25sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tv_data_diri"
             app:layout_constraintEnd_toEndOf="parent"
@@ -31,12 +32,13 @@
             android:id="@+id/tv_data_diri"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="112dp"
+            android:layout_marginStart="100dp"
             android:layout_marginTop="48dp"
+            android:fontFamily="@font/bold"
             android:gravity="center"
             android:text="Lengkapi"
             android:textColor="#000000"
-            android:textSize="25sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -47,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="24dp"
+            android:fontFamily="@font/bold"
             android:text="Nama"
             android:textColor="#000000"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +59,9 @@
             android:id="@+id/et_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/regular"
             android:layout_marginHorizontal="30dp"
+            android:background="#EBEBEB"
             app:layout_constraintStart_toStartOf="@+id/tv_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
@@ -66,6 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="12dp"
+            android:fontFamily="@font/bold"
             android:text="Fakultas"
             android:textColor="#000000"
             app:layout_constraintStart_toStartOf="@+id/tv_name"
@@ -76,6 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
+            android:background="#EBEBEB"
             app:layout_constraintStart_toStartOf="@+id/tv_fakultas"
             app:layout_constraintTop_toBottomOf="@+id/tv_fakultas" />
 
@@ -85,6 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="12dp"
+            android:fontFamily="@font/bold"
             android:text="Prodi"
             android:textColor="#000000"
             app:layout_constraintStart_toStartOf="@+id/tv_name"
@@ -95,6 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
+            android:background="#EBEBEB"
             app:layout_constraintStart_toStartOf="@+id/tv_prodi"
             app:layout_constraintTop_toBottomOf="@+id/tv_prodi" />
 
@@ -104,6 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="12dp"
+            android:fontFamily="@font/bold"
             android:text="Nomor Pokok Mahasiswa"
             android:textColor="#000000"
             app:layout_constraintStart_toStartOf="@+id/tv_name"
@@ -114,6 +124,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
+            android:background="#EBEBEB"
             app:layout_constraintStart_toStartOf="@+id/tv_npm"
             app:layout_constraintTop_toBottomOf="@+id/tv_npm" />
 
@@ -123,6 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="12dp"
+            android:fontFamily="@font/bold"
             android:text="Email"
             android:textColor="#000000"
             app:layout_constraintStart_toStartOf="@+id/tv_name"
@@ -133,6 +145,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
+            android:background="#EBEBEB"
             app:layout_constraintStart_toStartOf="@+id/tv_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_email" />
 
@@ -142,6 +155,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="12dp"
+            android:fontFamily="@font/bold"
             android:text="Kontak (Opsional)"
             android:textColor="#000000"
             app:layout_constraintStart_toStartOf="@id/tv_name"
@@ -152,6 +166,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
+            android:background="#EBEBEB"
             app:layout_constraintStart_toStartOf="@+id/tv_kontak"
             app:layout_constraintTop_toBottomOf="@+id/tv_kontak" />
 
@@ -161,6 +176,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="12dp"
+            android:fontFamily="@font/bold"
             android:text="Bio (Opsional)"
             android:textColor="#000000"
             app:layout_constraintStart_toStartOf="@+id/tv_name"
@@ -171,19 +187,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
+            android:background="#EBEBEB"
             app:layout_constraintStart_toStartOf="@+id/tv_bio"
             app:layout_constraintTop_toBottomOf="@+id/tv_bio" />
 
         <Button
             android:id="@+id/btn_simpan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="51dp"
             android:layout_marginTop="32dp"
             android:backgroundTint="#0C1357"
             android:enabled="false"
-            android:text="Simpan"
+            android:text="Lanjut"
+            android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textColorHint="#0C1357"
+            android:textSize="16sp"
+            app:cornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
