@@ -5,14 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    app:cardCornerRadius="4dp"
-    app:cardElevation="4dp"
-    app:cardMaxElevation="4dp"
+    app:cardCornerRadius="14dp"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="105dp">
 
         <ImageView
             android:id="@+id/img_poster"
@@ -38,7 +36,7 @@
             android:fontFamily="@font/semibold"
             android:gravity="start"
             android:maxLines="3"
-            android:textColor="#000000"
+            android:textColor="#343434"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,12 +46,12 @@
 
         <TextView
             android:id="@+id/tv_item_konten"
-            android:layout_width="250dp"
-            android:layout_height="60dp"
+            android:layout_width="247dp"
+            android:layout_height="49dp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/light"
             android:gravity="start"
-            android:textColor="#000000"
+            android:textColor="#343434"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
