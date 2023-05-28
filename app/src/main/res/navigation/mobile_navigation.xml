@@ -37,12 +37,12 @@
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.dikamahard.myunpad.ui.setting.SettingFragment"
-        android:label="fragment_setting"
+        android:label=""
         tools:layout="@layout/fragment_setting" />
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.dikamahard.myunpad.ui.home.DetailFragment"
-        android:label="fragment_detail"
+        android:label=" "
         tools:layout="@layout/fragment_detail" >
         <argument
             android:name="judul"

@@ -14,10 +14,10 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_judul"
-            android:layout_width="382dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             android:background="#EBEBEB"
             android:fontFamily="@font/light"
             android:paddingStart="10dp"
@@ -27,15 +27,16 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.761"
-            app:layout_constraintStart_toStartOf="@+id/tv_judul"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_judul" />
 
         <TextView
             android:id="@+id/tv_judul"
-            android:layout_width="125dp"
+            android:layout_width="match_parent"
             android:layout_height="23dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="40dp"
+            android:layout_marginEnd="24dp"
             android:fontFamily="@font/bold"
             android:text="Judul "
             android:textColor="#000000"
@@ -48,10 +49,11 @@
 
         <TextView
             android:id="@+id/tv_konten"
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="24dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
             android:fontFamily="@font/bold"
             android:text="Deskripsi"
             android:textColor="#000000"
@@ -63,10 +65,10 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_konten"
-            android:layout_width="391dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             android:background="#EBEBEB"
             android:fontFamily="@font/light"
             android:paddingStart="10dp"
@@ -76,7 +78,7 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.538"
-            app:layout_constraintStart_toStartOf="@+id/tv_konten"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_konten" />
 
         <TextView
@@ -166,8 +168,9 @@
             android:id="@+id/iv_pilihkategori"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
             android:fontFamily="@font/bold"
             android:text="Pilih Kategori"
             android:textColor="#000000"
@@ -192,9 +195,11 @@
             android:id="@+id/btn_unggahfoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="#EAEAEA"
             android:fontFamily="@font/semibold"
             android:text="Unggah Foto"
             android:textAllCaps="false"
+            android:textColor="#000000"
             app:cornerRadius="30dp"
             app:iconTint="#D8D8D8"
             app:layout_constraintEnd_toEndOf="parent"
