@@ -85,9 +85,10 @@ class ProfileViewModel : ViewModel() {
             val konten = snap.child("konten").value.toString()
             val penulis = snap.child("penulis").value.toString()
             val kategori = snap.child("kategori").value.toString()
+            val gambar = snap.child("gambar").value.toString()
 
 
-            val obj = Post(judul, konten, penulis, kategori)
+            val obj = Post(judul, konten, penulis, kategori, gambar = gambar)
             listPost.add(0, obj)
             _listPublished.postValue(listPost)
         }

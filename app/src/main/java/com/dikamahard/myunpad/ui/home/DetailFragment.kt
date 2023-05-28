@@ -28,7 +28,7 @@ class DetailFragment : Fragment() {
     }
     private val db = Firebase.database
     private val mAuth = FirebaseAuth.getInstance()
-    val storage = Firebase.storage
+    private val storage = Firebase.storage
 
 
     private lateinit var binding: FragmentDetailBinding
@@ -61,12 +61,22 @@ class DetailFragment : Fragment() {
             binding.tvJudul.text = judul
             binding.tvKonten.text = konten
             binding.tvPenulis.text = penulisNama.value.toString()
+
+            val fragmentContext = context
+
             val imageRef = storage.reference.child("post/$gambar")
             imageRef.downloadUrl.addOnSuccessListener { uri ->
                 val imgUrl = uri.toString()
-                Glide.with(requireContext())
-                    .load(imgUrl)
-                    .into(binding.ivPostdetail)
+
+//                Glide.with(requireContext())
+//                    .load(imgUrl)
+//                    .into(binding.ivPostdetail)
+
+                fragmentContext?.let { context ->
+                    Glide.with(context)
+                        .load(imgUrl)
+                        .into(binding.ivPostdetail)
+                }
 
             }
         }

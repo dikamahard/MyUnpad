@@ -12,6 +12,7 @@ import com.dikamahard.myunpad.model.Post
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
+
 class PostAdapter(private val listPost: List<Post>) : RecyclerView.Adapter<PostAdapter.ViewHolder>() {
 
     private lateinit var onItemClickCallback: OnItemClickCallback

@@ -59,7 +59,7 @@
         <argument
             android:name="gambar"
             app:argType="string"
-            android:defaultValue="doge_cp" />
+            android:defaultValue="doge_cp.jpg" />
     </fragment>
     <fragment
         android:id="@+id/detailPublishedFragment"
@@ -78,6 +78,10 @@
             android:name="publishedId"
             app:argType="string"
             android:defaultValue="ID Post" />
+        <argument
+            android:name="gambar"
+            app:argType="string"
+            android:defaultValue="doge_cp.jpg" />
         <action
             android:id="@+id/action_detailPublishedFragment_to_editFragment"
             app:destination="@id/editFragment" />
@@ -99,5 +103,9 @@
             android:name="postId"
             app:argType="string"
             android:defaultValue="ID Post" />
+        <argument
+            android:name="gambar"
+            app:argType="string"
+            android:defaultValue="doge_cp.jpg" />
     </fragment>
 </navigation>

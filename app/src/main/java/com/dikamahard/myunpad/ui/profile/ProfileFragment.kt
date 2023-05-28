@@ -109,6 +109,9 @@ class ProfileFragment : Fragment() {
                         toDetailPublished.judul = data.judul
                         toDetailPublished.konten = data.konten
                         toDetailPublished.publishedId = id
+                        // something here need debugging
+                        toDetailPublished.gambar = data.gambar ?: "doge_cp"
+                        ///////////////
                         findNavController().navigate(toDetailPublished)
                     }
                 })

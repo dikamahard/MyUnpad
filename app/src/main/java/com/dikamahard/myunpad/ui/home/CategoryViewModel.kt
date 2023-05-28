@@ -63,10 +63,11 @@ class CategoryViewModel : ViewModel() {
                     val judul = post.child("judul").value.toString()
                     val konten = post.child("konten").value.toString()
                     val penulis = post.child("penulis").value.toString()
+                    val gambar = post.child("gambar").value.toString()
                     Log.d("GETPOST", "id = ${postId}")
 
 
-                    val postObject = Post(judul, konten, penulis)
+                    val postObject = Post(judul, konten, penulis, gambar = gambar)
                     listPost.add(0, postObject)
                     _listPostFakultas.value = listPost
                 }
@@ -94,10 +95,11 @@ class CategoryViewModel : ViewModel() {
                     val judul = post.child("judul").value.toString()
                     val konten = post.child("konten").value.toString()
                     val penulis = post.child("penulis").value.toString()
+                    val gambar = post.child("gambar").value.toString()
                     Log.d("GETPOST", "id = ${postId}")
 
 
-                    val postObject = Post(judul, konten, penulis)
+                    val postObject = Post(judul, konten, penulis, gambar = gambar)
                     listPost.add(0, postObject)
                     _listPostProdi.value = listPost
                 }
@@ -113,38 +115,6 @@ class CategoryViewModel : ViewModel() {
         Log.d("GETPOST", "list = $listPost")
     }
 
-    fun getPost() {
-
-        val listPost = mutableListOf<Post>()
-
-        val postListener = object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                listPost.clear()
-                for (post in snapshot.children) {
-                    val postId = post.key
-                    val judul = post.child("judul").value.toString()
-                    val konten = post.child("konten").value.toString()
-                    val penulis = post.child("penulis").value.toString()
-                    Log.d("GETPOST", "id = ${postId}")
-
-
-                    val postObject = Post(judul, konten, penulis)
-                    listPost.add(0, postObject)
-                    _listPostKampus.value = listPost
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // handle error
-                Log.d("GETPOST", "error")
-            }
-        }
-
-        dbRef.child(FirebaseRepository.POST).addValueEventListener(postListener)
-        Log.d("GETPOST", "list = $listPost")
-    }
-
-
     fun getPostKampus() {
         val listPost = mutableListOf<Post>()
 
@@ -157,12 +127,11 @@ class CategoryViewModel : ViewModel() {
                     val konten = post.child("konten").value.toString()
                     val penulis = post.child("penulis").value.toString()
                     val gambar = post.child("gambar").value.toString()
-                    Log.d("GETPOST", "id = ${postId}")
-
-
                     val postObject = Post(judul, konten, penulis, gambar = gambar)
+                    Log.d("GETPOST", "id = ${postId}")
                     listPost.add(0, postObject)
                     _listPostKampus.value = listPost
+
                 }
             }
 
@@ -175,6 +144,40 @@ class CategoryViewModel : ViewModel() {
         dbRef.child(FirebaseRepository.POST).orderByChild("kategori").equalTo("Unpad").addValueEventListener(postListener)
         Log.d("GETPOST", "list = $listPost")
     }
+
+//    fun getPost() {
+//
+//        val listPost = mutableListOf<Post>()
+//
+//        val postListener = object : ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                listPost.clear()
+//                for (post in snapshot.children) {
+//                    val postId = post.key
+//                    val judul = post.child("judul").value.toString()
+//                    val konten = post.child("konten").value.toString()
+//                    val penulis = post.child("penulis").value.toString()
+//                    Log.d("GETPOST", "id = ${postId}")
+//
+//
+//                    val postObject = Post(judul, konten, penulis)
+//                    listPost.add(0, postObject)
+//                    _listPostKampus.value = listPost
+//                }
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                // handle error
+//                Log.d("GETPOST", "error")
+//            }
+//        }
+//
+//        dbRef.child(FirebaseRepository.POST).addValueEventListener(postListener)
+//        Log.d("GETPOST", "list = $listPost")
+//    }
+
+
+
 
     /*
     fun getPostFakultas() {

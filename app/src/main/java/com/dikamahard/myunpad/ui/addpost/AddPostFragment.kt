@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.dikamahard.myunpad.R
 import com.dikamahard.myunpad.databinding.FragmentAddPostBinding
 import com.dikamahard.myunpad.model.Post
 import com.dikamahard.myunpad.repository.FirebaseRepository
@@ -40,6 +41,7 @@ class AddPostFragment : Fragment() {
     val db = Firebase.database
     val mAUth = FirebaseAuth.getInstance()
 
+    //get default pic when user didnt choose pic. STILL NOT UPLOADING IMAGE
     lateinit var imageUri: Uri
 
     override fun onCreateView(
@@ -56,6 +58,9 @@ class AddPostFragment : Fragment() {
 //        addPostViewModel.text.observe(viewLifecycleOwner) {
 //            textView.text = it
 //        }
+
+        // didnt work. plan : kita coba bikin sistem kalo uri nya ini. ambil foto default yg di firebase
+        imageUri = Uri.parse("android.resource://${requireContext().packageName}/${R.drawable.noimage}")
 
         return root
     }
@@ -86,6 +91,7 @@ class AddPostFragment : Fragment() {
 
             val post = Post(judul = title, konten = content, penulis!!, kategori = kategori)
             CoroutineScope(Dispatchers.Main).launch {
+                // ERROR if the user didnt pick img
                 repo.createPost(post, imageUri)
                 //requireActivity().finish()
                 findNavController().popBackStack()
