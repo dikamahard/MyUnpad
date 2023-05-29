@@ -86,6 +86,7 @@ class ProfileFragment : Fragment() {
         }
 
         binding.rvPublishedPost.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvBookmarks.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         //binding.rvPublishedPost.adapter = PublishedAdapter()
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -94,6 +95,7 @@ class ProfileFragment : Fragment() {
             Log.d(TAG, "onViewCreated: $postIds")
 
             viewModel.getPublished()
+            viewModel.getBookmarks()
         }
 
 
@@ -136,7 +138,29 @@ class ProfileFragment : Fragment() {
  */
 
 
+        // TODO : BOOKMARKS RV
+        viewModel.listBookmarks.observe(viewLifecycleOwner) { listBookmarks ->
+            viewModel.listBookmarksId.observe(viewLifecycleOwner) { listBookmarkId ->
 
+                val adapter = PublishedAdapter(listBookmarks, listBookmarkId)
+
+                adapter.setOnItemClickCallback(object : PublishedAdapter.OnItemClickCallback{
+                    override fun onItemClicked(data: Post, id: String) {
+                        val toDetailPublished = ProfileFragmentDirections.actionNavigationProfileToDetailPublishedFragment()
+                        toDetailPublished.judul = data.judul
+                        toDetailPublished.konten = data.konten
+                        toDetailPublished.publishedId = id
+                        // something here need debugging
+                        toDetailPublished.gambar = data.gambar ?: "doge_cp"
+                        ///////////////
+                        findNavController().navigate(toDetailPublished)
+                    }
+                })
+                binding.rvBookmarks.adapter = adapter
+
+            }
+
+        }
 
 
 

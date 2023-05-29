@@ -34,14 +34,17 @@ class ProfileViewModel : ViewModel() {
     private val _listPublishedId = MutableLiveData<List<String>>()
     val listPublishedId = _listPublishedId
 
+    private val _listBookmarks = MutableLiveData<List<Post>>()
+    val listBookmarks = _listBookmarks
+
+    private val _listBookmarksId = MutableLiveData<List<String>>()
+    val listBookmarksId = _listBookmarksId
+
     val repo = FirebaseRepository(FirebaseAuth.getInstance(), Firebase.database)
 
 
     suspend fun getPublished() {
         val listPost = mutableListOf<Post>()
-
-
-
 
         // get the user postId list
         val snapshotIdPost = dbRef.child(FirebaseRepository.USERPOST).child(userAuth!!.uid).get().await()
@@ -49,7 +52,6 @@ class ProfileViewModel : ViewModel() {
         // reverse the id position according the position of rv
         val reverseIds = postIds.asReversed()
         _listPublishedId.postValue(reverseIds as List<String>)
-
 
 
         // get the post from posts db based on the user postId list
@@ -95,6 +97,33 @@ class ProfileViewModel : ViewModel() {
         Log.d("GETPOST", "list = $listPost")
     }
 
+
+    suspend fun getBookmarks() {
+        val listPost = mutableListOf<Post>()
+
+        // get the user postId list
+        val snapshotIdBookmarks = dbRef.child(FirebaseRepository.BOOKMARK).child(userAuth!!.uid).get().await()
+        val bookmarkIds = snapshotIdBookmarks.children.map { it.key }
+        // reverse the id position according the position of rv
+        val reverseIds = bookmarkIds.asReversed()
+        _listBookmarksId.postValue(reverseIds as List<String>)
+
+        for (bookmarkId in bookmarkIds) {
+            val snap = dbRef.child(FirebaseRepository.POST).child(bookmarkId!!).get().await()
+            val id = snap.key
+            Log.d(TAG, "getPublishedId: $id")
+            val judul = snap.child("judul").value.toString()
+            val konten = snap.child("konten").value.toString()
+            val penulis = snap.child("penulis").value.toString()
+            val kategori = snap.child("kategori").value.toString()
+            val gambar = snap.child("gambar").value.toString()
+
+
+            val obj = Post(judul, konten, penulis, kategori, gambar = gambar)
+            listPost.add(0, obj)
+            _listBookmarks.postValue(listPost)
+        }
+    }
 
 
 
