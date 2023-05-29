@@ -32,6 +32,15 @@ class CategoryViewModel : ViewModel() {
     private val _listPostProdi = MutableLiveData<List<Post>>()
     val listPostProdi: LiveData<List<Post>> = _listPostProdi
 
+    private val _listIdPostKampus = MutableLiveData<List<String>>()
+    val listIdPostKampus: LiveData<List<String>> = _listIdPostKampus
+
+    private val _listIdPostFakultas = MutableLiveData<List<String>>()
+    val listIdPostFakultas: LiveData<List<String>> = _listIdPostFakultas
+
+    private val _listIdPostProdi = MutableLiveData<List<String>>()
+    val listIdPostProdi: LiveData<List<String>> = _listIdPostProdi
+
     val repo = FirebaseRepository(FirebaseAuth.getInstance(), Firebase.database)
 
     fun getProdi(): String = runBlocking {
@@ -54,6 +63,7 @@ class CategoryViewModel : ViewModel() {
     // getPostFakultas (diambil berdasarkan fakultas pengguna)
     fun getPostFakultas(fakultas: String) {
         val listPost = mutableListOf<Post>()
+        val listId = mutableListOf<String>()
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -69,6 +79,8 @@ class CategoryViewModel : ViewModel() {
 
                     val postObject = Post(judul, konten, penulis, gambar = gambar)
                     listPost.add(0, postObject)
+                    listId.add(0, postId!!)
+                    _listIdPostFakultas.value = listId
                     _listPostFakultas.value = listPost
                 }
             }
@@ -86,6 +98,7 @@ class CategoryViewModel : ViewModel() {
     // getPostProdi (diambil berdasarkan prodi pengguna)
     fun getPostProdi(prodi: String) {
         val listPost = mutableListOf<Post>()
+        val listId = mutableListOf<String>()
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -101,6 +114,8 @@ class CategoryViewModel : ViewModel() {
 
                     val postObject = Post(judul, konten, penulis, gambar = gambar)
                     listPost.add(0, postObject)
+                    listId.add(0, postId!!)
+                    _listIdPostProdi.value = listId
                     _listPostProdi.value = listPost
                 }
             }
@@ -117,6 +132,7 @@ class CategoryViewModel : ViewModel() {
 
     fun getPostKampus() {
         val listPost = mutableListOf<Post>()
+        val listId = mutableListOf<String>()
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -130,6 +146,8 @@ class CategoryViewModel : ViewModel() {
                     val postObject = Post(judul, konten, penulis, gambar = gambar)
                     Log.d("GETPOST", "id = ${postId}")
                     listPost.add(0, postObject)
+                    listId.add(0, postId!!)
+                    _listIdPostKampus.value = listId
                     _listPostKampus.value = listPost
 
                 }

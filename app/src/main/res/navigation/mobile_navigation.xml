@@ -60,6 +60,10 @@
             android:name="gambar"
             app:argType="string"
             android:defaultValue="doge_cp.jpg" />
+        <argument
+            android:name="postId"
+            app:argType="string"
+            android:defaultValue="ID post" />
     </fragment>
     <fragment
         android:id="@+id/detailPublishedFragment"

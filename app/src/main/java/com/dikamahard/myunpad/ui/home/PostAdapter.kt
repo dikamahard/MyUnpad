@@ -47,7 +47,7 @@ class PostAdapter(private val listPost: List<Post>) : RecyclerView.Adapter<PostA
 
 
         holder.itemView.setOnClickListener {
-            onItemClickCallback.onItemClicked(listPost[position])
+            onItemClickCallback.onItemClicked(listPost[position], position)
         }
     }
 
@@ -56,7 +56,7 @@ class PostAdapter(private val listPost: List<Post>) : RecyclerView.Adapter<PostA
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: Post)
+        fun onItemClicked(data: Post, position: Int)
     }
 
 }

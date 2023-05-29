@@ -21,6 +21,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.FieldPosition
 
 
 /**
@@ -69,18 +70,22 @@ class CategoryFragment : Fragment() {
 //                val adapter = PostAdapter(repo.getPost())
 //                binding.rvPost.adapter = adapter
 //            }
+            lateinit var listIdPostKampus: List<String>
             viewModel.getPostKampus()
-
+            viewModel.listIdPostKampus.observe(viewLifecycleOwner) { listId ->
+                listIdPostKampus = listId
+            }
             viewModel.listPostKampus.observe(viewLifecycleOwner){ listPost ->
                 val adapter = PostAdapter(listPost)
                 adapter.setOnItemClickCallback(object : PostAdapter.OnItemClickCallback {
-                    override fun onItemClicked(data: Post) {
+                    override fun onItemClicked(data: Post, position: Int) {
                         Log.d(TAG, "onItemClicked: ${data.judul}")
                         val toDetailPost = HomeFragmentDirections.actionNavigationHomeToDetailFragment()
                         toDetailPost.judul = data.judul
                         toDetailPost.konten = data.konten
                         toDetailPost.penulis = data.penulis
                         toDetailPost.gambar = data.gambar.toString()
+                        toDetailPost.postId = listIdPostKampus[position]
                         findNavController().navigate(toDetailPost)
                     }
                 })
@@ -95,16 +100,22 @@ class CategoryFragment : Fragment() {
             //binding.tvCategory.text = "Informasi Fakultas"
             viewModel.getPostFakultas(viewModel.getFakultas())
 
+            lateinit var listIdPostFakultas: List<String>
+            viewModel.listIdPostFakultas.observe(viewLifecycleOwner) { listId ->
+                listIdPostFakultas = listId
+            }
+
             viewModel.listPostFakultas.observe(viewLifecycleOwner) { listPost ->
                 val adapter = PostAdapter(listPost)
                 adapter.setOnItemClickCallback(object : PostAdapter.OnItemClickCallback {
-                    override fun onItemClicked(data: Post) {
+                    override fun onItemClicked(data: Post, position: Int) {
                         Log.d(TAG, "onItemClicked: ${data.judul}")
                         val toDetailPost = HomeFragmentDirections.actionNavigationHomeToDetailFragment()
                         toDetailPost.judul = data.judul
                         toDetailPost.konten = data.konten
                         toDetailPost.penulis = data.penulis
                         toDetailPost.gambar = data.gambar.toString()
+                        toDetailPost.postId = listIdPostFakultas[position]
                         findNavController().navigate(toDetailPost)
                     }
                 })
@@ -117,16 +128,22 @@ class CategoryFragment : Fragment() {
             //binding.tvCategory.text = "Informasi Prodi"
             viewModel.getPostProdi(viewModel.getProdi())
 
+            lateinit var listIdPostProdi: List<String>
+            viewModel.listIdPostProdi.observe(viewLifecycleOwner) { listId ->
+                listIdPostProdi = listId
+            }
+
             viewModel.listPostProdi.observe(viewLifecycleOwner) { listPost ->
                 val adapter = PostAdapter(listPost)
                 adapter.setOnItemClickCallback(object : PostAdapter.OnItemClickCallback {
-                    override fun onItemClicked(data: Post) {
+                    override fun onItemClicked(data: Post, position: Int) {
                         Log.d(TAG, "onItemClicked: ${data.judul}")
                         val toDetailPost = HomeFragmentDirections.actionNavigationHomeToDetailFragment()
                         toDetailPost.judul = data.judul
                         toDetailPost.konten = data.konten
                         toDetailPost.penulis = data.penulis
                         toDetailPost.gambar = data.gambar.toString()
+                        toDetailPost.postId = listIdPostProdi[position]
                         findNavController().navigate(toDetailPost)
                     }
                 })

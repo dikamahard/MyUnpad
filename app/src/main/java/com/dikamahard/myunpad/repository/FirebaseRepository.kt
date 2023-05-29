@@ -39,6 +39,7 @@ class FirebaseRepository(auth: FirebaseAuth, db: FirebaseDatabase) {
         const val CATEGORY_KAMPUS = "category/kampus"
         const val CATEGORY_FAKULTAS = "category/fakultas"
         const val CATEGORY_PRODI = "category/prodi"
+        const val BOOKMARK = "bookmarks"
     }
 
     // CreateUserProfile
