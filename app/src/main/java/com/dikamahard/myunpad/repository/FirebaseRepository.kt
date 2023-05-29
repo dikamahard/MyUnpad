@@ -30,15 +30,6 @@ class FirebaseRepository(auth: FirebaseAuth, db: FirebaseDatabase) {
     val dbRef = db.reference
     val storage = Firebase.storage
 
-
-
-    // List of child node from root reference
-    //  users
-    //  posts
-    //  category
-    //  categoryPost
-    //  userPost
-
     companion object {
         const val USER = "users"
         const val CATEGORY = "category"
@@ -49,14 +40,6 @@ class FirebaseRepository(auth: FirebaseAuth, db: FirebaseDatabase) {
         const val CATEGORY_FAKULTAS = "category/fakultas"
         const val CATEGORY_PRODI = "category/prodi"
     }
-
-
-
-
-
-
-    /*
-     */
 
     // CreateUserProfile
     fun createProfile(user: User, uId: String) {
@@ -172,6 +155,29 @@ class FirebaseRepository(auth: FirebaseAuth, db: FirebaseDatabase) {
         val prodi = dbRef.child(USER).child(uId).child("prodi").get().await()
         return prodi.value.toString()
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     // GetPosts

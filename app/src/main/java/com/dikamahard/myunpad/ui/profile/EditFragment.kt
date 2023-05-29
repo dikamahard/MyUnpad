@@ -1,5 +1,8 @@
 package com.dikamahard.myunpad.ui.profile
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,15 +11,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.dikamahard.myunpad.R
 import com.dikamahard.myunpad.databinding.FragmentEditBinding
 import com.dikamahard.myunpad.repository.FirebaseRepository
+import com.dikamahard.myunpad.ui.addpost.AddPostFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.values
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,6 +39,10 @@ class EditFragment : Fragment() {
     private lateinit var binding: FragmentEditBinding
     val userAuth = FirebaseAuth.getInstance().currentUser
     val dbRef = FirebaseDatabase.getInstance().reference
+    private val storage = Firebase.storage
+    var imageUri: Uri? = null
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,10 +60,28 @@ class EditFragment : Fragment() {
         val judul = EditFragmentArgs.fromBundle(arguments as Bundle).judul
         val konten = EditFragmentArgs.fromBundle(arguments as Bundle).konten
         val postId = EditFragmentArgs.fromBundle(arguments as Bundle).postId
+        val gambar = EditFragmentArgs.fromBundle(arguments as Bundle).gambar
+
+        Log.d(TAG, "edit gambar $gambar")
 
         // predefined text
         binding.etJudul.setText(judul)
         binding.etKonten.setText(konten)
+
+        val fragmentContext = context
+        // load image
+        val imageRef = storage.reference.child("post/$gambar")
+        imageRef.downloadUrl.addOnSuccessListener { uri ->
+            val imgUrl = uri.toString()
+
+            fragmentContext?.let { context ->
+                Glide.with(context)
+                    .load(imgUrl)
+                    .into(binding.imageView)
+            }
+
+        }
+
 
         // get post category from categoryPost db
         //CoroutineScope(Dispatchers.Main).launch {
@@ -108,6 +137,12 @@ class EditFragment : Fragment() {
         //}
 
         Log.d(TAG, "onDataChange hasil: $categoryId")
+
+
+        // Select new image
+        binding.btnUnggahfoto.setOnClickListener {
+            selectImage()
+        }
 
 
 
@@ -181,11 +216,44 @@ class EditFragment : Fragment() {
                     findNavController().popBackStack()
                     Toast.makeText(context, "Update Berhasil", Toast.LENGTH_SHORT).show()
                 }
+
+                // update image if the user choose new image
+                if (imageUri != null) {
+                    // upload new image
+                    val storageRef = storage.reference.child("post/$gambar")
+                    storageRef.putFile(imageUri!!).addOnSuccessListener {
+                        Log.d(AddPostFragment.TAG, "onViewCreated: BERHASIL UPDATE IMAGE")
+
+                    }.addOnFailureListener {
+                        Log.d(AddPostFragment.TAG, "onViewCreated: GAGAL UPDATE IMAGE")
+                    }
+                }
             }
 
 
         }
 
 
+    }
+
+    private fun selectImage() {
+
+        val intent = Intent()
+        intent.apply {
+            type = "image/*"
+            action = Intent.ACTION_GET_CONTENT
+        }
+
+        startActivityForResult(intent,100)
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 100 && resultCode == Activity.RESULT_OK) {
+            imageUri = data?.data!!
+            binding.imageView.setImageURI(imageUri)
+        }
     }
 }

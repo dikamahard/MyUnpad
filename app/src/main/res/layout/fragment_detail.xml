@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.DetailFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="100dp">
+
     <ImageView
         android:id="@+id/iv_postdetail"
-        android:layout_width="match_parent"
+        android:layout_width="366dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/loginimage"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,15 +28,16 @@
         android:id="@+id/tv_judul"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="52dp"
-        android:fontFamily="@font/bold"
-        android:gravity="center"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/semibold"
         android:text="Judul Postingan"
-        android:textColor="#000000"
+        android:textAlignment="textStart"
+        android:textColor="#343434"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,11 +45,13 @@
         android:id="@+id/tv_dipublikasikan"
         android:layout_width="188dp"
         android:layout_height="19dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/semibold"
+        android:letterSpacing="-0.02"
         android:text="Dipublikasikan oleh:"
-        android:textColor="#000000"
+        android:textColor="#343434"
+        android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/iv_profilpenulis"
         app:layout_constraintTop_toTopOf="@+id/iv_profilpenulis" />
@@ -51,10 +61,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/light"
+        android:letterSpacing="-0.02"
         android:text="nama penulis"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toStartOf="@+id/iv_bookmark_0"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:textColor="#343434"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/tv_dipublikasikan"
         app:layout_constraintTop_toBottomOf="@+id/tv_dipublikasikan" />
 
@@ -77,11 +87,11 @@
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/bold"
         android:text="Deskripsi"
-        android:textColor="#000000"
+        android:textColor="#343434"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_profilpenulis" />
 
@@ -90,25 +100,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/light"
         android:text="deskripsiiiiiiiiiiiiii"
-        android:textColor="#000000"
+        android:textColor="#343434"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_deskripsi" />
 
-    <ImageView
-        android:id="@+id/iv_bookmark_0"
-        android:layout_width="31dp"
-        android:layout_height="35dp"
-        android:src="@drawable/ic_bookmark_0"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_penulis"
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/bookmark1"
+        app:layout_constraintBottom_toTopOf="@+id/tv_deskripsi"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.727"
-        app:layout_constraintStart_toEndOf="@+id/tv_dipublikasikan"
-        app:layout_constraintTop_toTopOf="@+id/tv_dipublikasikan"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toEndOf="@+id/tv_dipublikasikan" />
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

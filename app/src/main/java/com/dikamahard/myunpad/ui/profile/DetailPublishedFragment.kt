@@ -1,24 +1,34 @@
 package com.dikamahard.myunpad.ui.profile
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.dikamahard.myunpad.R
 import com.dikamahard.myunpad.databinding.FragmentDetailPublishedBinding
 import com.dikamahard.myunpad.repository.FirebaseRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 
 class DetailPublishedFragment : Fragment() {
 
+    companion object {
+        val TAG = "DETAILPUBLISHED"
+    }
+
     private lateinit var binding: FragmentDetailPublishedBinding
     val userAuth = FirebaseAuth.getInstance().currentUser
     val dbRef = FirebaseDatabase.getInstance().reference
+    private val storage = Firebase.storage
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,13 +45,33 @@ class DetailPublishedFragment : Fragment() {
         val judul = DetailPublishedFragmentArgs.fromBundle(arguments as Bundle).judul
         val konten = DetailPublishedFragmentArgs.fromBundle(arguments as Bundle).konten
         val publishedId = DetailPublishedFragmentArgs.fromBundle(arguments as Bundle).publishedId
+        val gambar = DetailPublishedFragmentArgs.fromBundle(arguments as Bundle).gambar
+        Log.d("DETAILPUBLISH", "onViewCreated: gambar $gambar ")
 
         binding.tvJudulpublished.text = judul
         binding.tvKontenpublished.text = konten
         binding.tvIdpublihed.text = publishedId
 
+        val fragmentContext = context
 
-        // todo : NEED DELETE FROM CATEGORY POST DB
+        // load image
+        val imageRef = storage.reference.child("post/$gambar")
+        imageRef.downloadUrl.addOnSuccessListener { uri ->
+            val imgUrl = uri.toString()
+//            Glide.with(requireContext())
+//                .load(imgUrl)
+//                .into(binding.ivDetailpublished)
+
+            fragmentContext?.let { context ->
+                Glide.with(context)
+                    .load(imgUrl)
+                    .into(binding.ivDetailpublished)
+            }
+
+        }
+
+
+        // todo : NEED DELETE FROM CATEGORY POST DB + IMAGE
         binding.btnDelete.setOnClickListener {
             // delete from posts db
             val postRef = dbRef.child(FirebaseRepository.POST).child(publishedId)
@@ -66,13 +96,26 @@ class DetailPublishedFragment : Fragment() {
 
             }
 
+            // delete image from storage
+            val deleteRef = storage.reference.child("post/$gambar")
+            deleteRef.delete().addOnSuccessListener {
+                Log.d(TAG, "GAMBAR DELETE BERHASIL $gambar")
+            }.addOnFailureListener {
+                Log.d(TAG, "GAMBAR DELETE GAGAL $gambar")
+
+            }
+
         }
+
+
+
 
         binding.btnEdit.setOnClickListener {
             val toEditFragment = DetailPublishedFragmentDirections.actionDetailPublishedFragmentToEditFragment()
             toEditFragment.judul = judul
             toEditFragment.konten = konten
             toEditFragment.postId = publishedId
+            toEditFragment.gambar = gambar
             findNavController().navigate(toEditFragment)
 
         }
