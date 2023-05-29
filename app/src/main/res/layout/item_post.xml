@@ -46,17 +46,19 @@
 
         <TextView
             android:id="@+id/tv_item_konten"
-            android:layout_width="247dp"
+            android:layout_width="224dp"
             android:layout_height="49dp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/light"
             android:gravity="start"
             android:textColor="#343434"
             android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/tv_item_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_item_title"
+            app:layout_constraintVertical_bias="0.0"
             tools:text="Konten" />
 
         <!--        <ImageView-->
