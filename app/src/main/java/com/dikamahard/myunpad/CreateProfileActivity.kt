@@ -1,6 +1,7 @@
 package com.dikamahard.myunpad
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -8,6 +9,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.dikamahard.myunpad.databinding.ActivityCreateProfileBinding
 import com.dikamahard.myunpad.model.User
 import com.google.firebase.auth.FirebaseAuth
@@ -18,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class CreateProfileActivity : AppCompatActivity() {
 
@@ -26,6 +29,9 @@ class CreateProfileActivity : AppCompatActivity() {
     private lateinit var valueEventListener: ValueEventListener
 
     val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    val storage = Firebase.storage
+
+    lateinit var imageUri: Uri
 
 
     companion object {
@@ -44,7 +50,11 @@ class CreateProfileActivity : AppCompatActivity() {
         val userId = mAuth.currentUser!!.uid
         val profileRef = db.reference.child("users").child(userId)
 
+        imageUri = Uri.parse("android.resource://$packageName/${R.drawable.ic_baseline_profile_24}")
 
+        binding.ivProfile.setOnClickListener {
+            selectImage()
+        }
 
         binding.etEmail.apply {
             setText("${mAuth.currentUser?.email}")
@@ -109,9 +119,17 @@ class CreateProfileActivity : AppCompatActivity() {
             val bio = binding.etBio.text.toString()
             val email = mAuth.currentUser?.email
 
+            // Upload Profile
+            val storageRef = storage.reference.child("profile/$userId")
+            storageRef.putFile(imageUri).addOnSuccessListener {
+                Log.d(TAG, "onCreate: BERHASIL GAMBAR PROFILE")
+            }.addOnFailureListener {
+                Log.d(TAG, "onCreate: GAGAL GAMBAR PROFILE")
+            }
+
             //bikin error handling kalo ada isian yg kosong
 
-            val userData = User(name, npm, prodi, fakultas, "Unpad", bio, kontak, email = email, isnew = false)
+            val userData = User(name, npm, prodi, fakultas, "Unpad", bio, kontak, email = email, isnew = false, image = userId)
 
             val profileUpdates = userProfileChangeRequest {
                 displayName = name
@@ -158,6 +176,27 @@ class CreateProfileActivity : AppCompatActivity() {
 //            val prodi = binding.spProdi.selectedItem.toString()
 
             binding.btnSimpan.isEnabled = !name.isEmpty() && !npm.isEmpty() //&& !fakultas.isEmpty() && !prodi.isEmpty()
+        }
+    }
+
+    private fun selectImage() {
+
+        val intent = Intent()
+        intent.apply {
+            type = "image/*"
+            action = Intent.ACTION_GET_CONTENT
+        }
+
+        startActivityForResult(intent,100)
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 100 && resultCode == RESULT_OK) {
+            imageUri = data?.data!!
+            binding.ivProfile.setImageURI(imageUri)
         }
     }
 

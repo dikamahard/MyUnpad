@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.dikamahard.myunpad.R
 import com.dikamahard.myunpad.databinding.FragmentProfileBinding
 import com.dikamahard.myunpad.model.Post
@@ -19,6 +20,7 @@ import com.dikamahard.myunpad.repository.FirebaseRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -33,6 +35,8 @@ class ProfileFragment : Fragment() {
     //private var _binding: FragmentProfileBinding? = null
     val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
     val db = Firebase.database
+    private val storage = Firebase.storage
+
 
     private lateinit var optionsMenu: Menu
 
@@ -96,6 +100,19 @@ class ProfileFragment : Fragment() {
 
             viewModel.getPublished()
             viewModel.getBookmarks()
+        }
+
+        // get profile image from db
+        val fragmentContext = context
+        val profileRef = storage.reference.child("profile/$userId")
+        profileRef.downloadUrl.addOnSuccessListener { uri ->
+            val imgUrl = uri.toString()
+
+            fragmentContext?.let { context ->
+                Glide.with(context)
+                    .load(imgUrl)
+                    .into(binding.ivProfile)
+            }
         }
 
 

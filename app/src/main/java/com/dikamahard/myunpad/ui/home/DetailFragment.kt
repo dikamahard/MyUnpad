@@ -89,6 +89,22 @@ class DetailFragment : Fragment() {
                 }
 
             }
+
+
+            // load author profile
+            val profileRef = storage.reference.child("profile/$penulisId")
+            profileRef.downloadUrl.addOnSuccessListener { uri ->
+                val imgUrl = uri.toString()
+//            Glide.with(requireContext())
+//                .load(imgUrl)
+//                .into(binding.ivDetailpublished)
+
+                fragmentContext?.let { context ->
+                    Glide.with(context)
+                        .load(imgUrl)
+                        .into(binding.ivProfilpenulis)
+                }
+            }
         }
 
 
