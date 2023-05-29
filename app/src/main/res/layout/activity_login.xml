@@ -49,6 +49,7 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textSize="14sp"
+            android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.457"
             app:layout_constraintStart_toStartOf="parent"
