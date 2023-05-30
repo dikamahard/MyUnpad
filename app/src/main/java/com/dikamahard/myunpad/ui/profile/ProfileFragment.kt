@@ -82,9 +82,9 @@ class ProfileFragment : Fragment() {
         val userId = mAuth.currentUser!!.uid
 
         //Fetch data from db (masi ngebug, need more robust solution) mungkin karena ngambil dari online dan masih null, harus nunggu biar keambil maybe
-        db.reference.child(FirebaseRepository.USER).child(userId).get().addOnSuccessListener {
-            //binding.tvNpm.text = it.child("npm").value.toString()
-            binding.tvNpm.text = userId
+        db.reference.child("users").child(userId).get().addOnSuccessListener {
+            binding.tvNpm.text = it.child("npm").value.toString()
+            //binding.tvNpm.text = userId
             binding.tvProdi.text = it.child("prodi").value.toString()
             binding.tvFakultas.text = it.child("fakultas").value.toString()
         }
@@ -163,14 +163,14 @@ class ProfileFragment : Fragment() {
 
                 adapter.setOnItemClickCallback(object : PublishedAdapter.OnItemClickCallback{
                     override fun onItemClicked(data: Post, id: String) {
-                        val toDetailBookmarked = ProfileFragmentDirections.actionNavigationProfileToDetailBookmarkedFragment()
-                        toDetailBookmarked.judul = data.judul
-                        toDetailBookmarked.konten = data.konten
-                        toDetailBookmarked.bookmarkedId = id
+                        val toDetailPublished = ProfileFragmentDirections.actionNavigationProfileToDetailPublishedFragment()
+                        toDetailPublished.judul = data.judul
+                        toDetailPublished.konten = data.konten
+                        toDetailPublished.publishedId = id
                         // something here need debugging
-                        toDetailBookmarked.gambar = data.gambar ?: "doge_cp"
+                        toDetailPublished.gambar = data.gambar ?: "doge_cp"
                         ///////////////
-                        findNavController().navigate(toDetailBookmarked)
+                        findNavController().navigate(toDetailPublished)
                     }
                 })
                 binding.rvBookmarks.adapter = adapter
