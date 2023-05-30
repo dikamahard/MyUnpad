@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_navigation_profile_to_detailPublishedFragment"
             app:destination="@id/detailPublishedFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_detailBookmarkedFragment"
+            app:destination="@id/detailBookmarkedFragment" />
     </fragment>
 
     <fragment
@@ -64,6 +67,9 @@
             android:name="postId"
             app:argType="string"
             android:defaultValue="ID post" />
+        <action
+            android:id="@+id/action_detailFragment_to_publisherProfileFragment"
+            app:destination="@id/publisherProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailPublishedFragment"
@@ -105,6 +111,38 @@
             android:name="postId"
             app:argType="string"
             android:defaultValue="ID Post" />
+        <argument
+            android:name="gambar"
+            app:argType="string"
+            android:defaultValue="doge_cp.jpg" />
+    </fragment>
+    <fragment
+        android:id="@+id/publisherProfileFragment"
+        android:name="com.dikamahard.myunpad.ui.home.PublisherProfileFragment"
+        android:label="fragment_publisher_profile"
+        tools:layout="@layout/fragment_publisher_profile" >
+        <argument
+            android:name="publisherId"
+            app:argType="string"
+            android:defaultValue="ID Publisher" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailBookmarkedFragment"
+        android:name="com.dikamahard.myunpad.ui.profile.DetailBookmarkedFragment"
+        android:label="fragment_detail_bookmarked"
+        tools:layout="@layout/fragment_detail_bookmarked">
+        <argument
+            android:name="judul"
+            app:argType="string"
+            android:defaultValue="Judul bookmarked" />
+        <argument
+            android:name="konten"
+            app:argType="string"
+            android:defaultValue="lorem ipsum" />
+        <argument
+            android:name="bookmarkedId"
+            app:argType="string"
+            android:defaultValue="ID bookmarked" />
         <argument
             android:name="gambar"
             app:argType="string"

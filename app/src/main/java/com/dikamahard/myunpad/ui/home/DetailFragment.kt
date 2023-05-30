@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.dikamahard.myunpad.R
 import com.dikamahard.myunpad.databinding.FragmentDetailBinding
@@ -105,6 +106,13 @@ class DetailFragment : Fragment() {
                         .into(binding.ivProfilpenulis)
                 }
             }
+
+        }
+
+        binding.ivProfilpenulis.setOnClickListener {
+            val toPublisherProfile = DetailFragmentDirections.actionDetailFragmentToPublisherProfileFragment()
+            toPublisherProfile.publisherId = penulisId
+            findNavController().navigate(toPublisherProfile)
         }
 
 
