@@ -83,8 +83,8 @@ class ProfileFragment : Fragment() {
 
         //Fetch data from db (masi ngebug, need more robust solution) mungkin karena ngambil dari online dan masih null, harus nunggu biar keambil maybe
         db.reference.child("users").child(userId).get().addOnSuccessListener {
-            //binding.tvNpm.text = it.child("npm").value.toString()
-            binding.tvNpm.text = userId
+            binding.tvNpm.text = it.child("npm").value.toString()
+           // binding.tvNpm.text = it.child("npm"
             binding.tvProdi.text = it.child("prodi").value.toString()
             binding.tvFakultas.text = it.child("fakultas").value.toString()
         }
