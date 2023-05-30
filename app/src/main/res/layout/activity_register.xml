@@ -47,7 +47,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_passwordReg"
-            android:layout_width="291dp"
+            android:layout_width="292dp"
             android:layout_height="32dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
