@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.profile.ProfileFragment">
+    tools:context=".ui.home.PublisherProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="300dp">
+        android:paddingBottom="150dp">
 
         <TextView
             android:id="@+id/text_notifications"
@@ -84,24 +84,6 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_npm" />
 
         <TextView
-            android:id="@+id/tv_bio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
-            android:fontFamily="@font/regular"
-            android:gravity="center"
-            android:text="Biodataku"
-
-            android:textColor="#848484"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_prodi" />
-
-        <TextView
             android:id="@+id/tv_prodi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -121,8 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="32dp"
             android:fontFamily="@font/semibold"
             android:text="Publikasi"
             android:textColor="#343434"
@@ -131,10 +112,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_bio" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_prodi" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_published_post"
+            android:id="@+id/rv_publihser_post"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
@@ -143,27 +124,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_publikasi" />
 
-        <TextView
-            android:id="@+id/tv_bookmarks"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
-            android:text="Bookmarks"
-            android:textColor="#343434"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_published_post" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_bookmarks"
-            android:layout_marginTop="14dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_bookmarks" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -171,27 +131,27 @@
 
 
     <!--    <Button-->
-<!--        android:id="@+id/btn"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="76dp"-->
-<!--        android:text="TES"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tv_prodi" />-->
+    <!--        android:id="@+id/btn"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="76dp"-->
+    <!--        android:text="TES"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/tv_prodi" />-->
 
     <!--    <de.hdodenhof.circleimageview.CircleImageView-->
-<!--        android:id="@+id/iv_profile"-->
-<!--        android:layout_width="96dp"-->
-<!--        android:layout_height="96dp"-->
-<!--        android:layout_marginEnd="8dp"-->
-<!--        android:layout_marginBottom="635dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/text_notifications"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.22000003"-->
-<!--        tools:src="@tools:sample/avatars" />-->
+    <!--        android:id="@+id/iv_profile"-->
+    <!--        android:layout_width="96dp"-->
+    <!--        android:layout_height="96dp"-->
+    <!--        android:layout_marginEnd="8dp"-->
+    <!--        android:layout_marginBottom="635dp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toStartOf="@+id/text_notifications"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintVertical_bias="0.22000003"-->
+    <!--        tools:src="@tools:sample/avatars" />-->
 
 
 </ScrollView>
