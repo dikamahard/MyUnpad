@@ -164,14 +164,14 @@ class ProfileFragment : Fragment() {
 
                 adapter.setOnItemClickCallback(object : PublishedAdapter.OnItemClickCallback{
                     override fun onItemClicked(data: Post, id: String) {
-                        val toDetailPublished = ProfileFragmentDirections.actionNavigationProfileToDetailPublishedFragment()
-                        toDetailPublished.judul = data.judul
-                        toDetailPublished.konten = data.konten
-                        toDetailPublished.publishedId = id
+                        val toDetailBookmarked = ProfileFragmentDirections.actionNavigationProfileToDetailBookmarkedFragment()
+                        toDetailBookmarked.judul = data.judul
+                        toDetailBookmarked.konten = data.konten
+                        toDetailBookmarked.bookmarkedId = id
                         // something here need debugging
-                        toDetailPublished.gambar = data.gambar ?: "doge_cp"
+                        toDetailBookmarked.gambar = data.gambar ?: "doge_cp"
                         ///////////////
-                        findNavController().navigate(toDetailPublished)
+                        findNavController().navigate(toDetailBookmarked)
                     }
                 })
                 binding.rvBookmarks.adapter = adapter

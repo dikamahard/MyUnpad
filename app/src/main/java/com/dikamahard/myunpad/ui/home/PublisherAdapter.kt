@@ -17,11 +17,11 @@ class PublisherAdapter(private val listPost: List<Post>, private val listId: Lis
     val storage = Firebase.storage
 
     //private val listId = mutableListOf<String>()
-    //private lateinit var onItemClickCallback: PublisherAdapter.OnItemClickCallback
+    private lateinit var onItemClickCallback: PublisherAdapter.OnItemClickCallback
 
-//    fun setOnItemClickCallback(onItemClickCallback: PublisherAdapter.OnItemClickCallback) {
-//        this.onItemClickCallback = onItemClickCallback
-//    }
+    fun setOnItemClickCallback(onItemClickCallback: PublisherAdapter.OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
 
     inner class ViewHolder(v: View): RecyclerView.ViewHolder(v) {
         val tvJudul = v.findViewById<TextView>(R.id.tv_horizontal_title)
@@ -44,18 +44,18 @@ class PublisherAdapter(private val listPost: List<Post>, private val listId: Lis
                 .into(holder.ivGambar)
         }
 
-//        holder.itemView.setOnClickListener {
-//            onItemClickCallback.onItemClicked(listPost[position], listId[position])
-//        }
+        holder.itemView.setOnClickListener {
+            onItemClickCallback.onItemClicked(listPost[position], listId[position])
+        }
     }
 
     override fun getItemCount(): Int {
         return listPost.size
     }
 
-//    interface OnItemClickCallback {
-//        fun onItemClicked(data: Post, id: String)
-//    }
+    interface OnItemClickCallback {
+        fun onItemClicked(data: Post, id: String)
+    }
 
 }
 

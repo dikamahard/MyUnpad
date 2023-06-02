@@ -125,6 +125,9 @@
             android:name="publisherId"
             app:argType="string"
             android:defaultValue="ID Publisher" />
+        <action
+            android:id="@+id/action_publisherProfileFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailBookmarkedFragment"
@@ -148,4 +151,9 @@
             app:argType="string"
             android:defaultValue="doge_cp.jpg" />
     </fragment>
+    <fragment
+        android:id="@+id/detailPublikasiPenulisFragment"
+        android:name="com.dikamahard.myunpad.ui.home.DetailPublikasiPenulisFragment"
+        android:label="fragment_detail_publikasi_penulis"
+        tools:layout="@layout/fragment_detail_publikasi_penulis" />
 </navigation>

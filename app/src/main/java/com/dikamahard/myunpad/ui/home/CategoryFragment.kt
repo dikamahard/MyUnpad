@@ -1,5 +1,6 @@
 package com.dikamahard.myunpad.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -34,6 +35,10 @@ class CategoryFragment : Fragment() {
     companion object{
         const val POSITION = "position"
         const val TAG = "CategoryFragment"
+
+        private const val NOTIFICATION_ID = 1
+        private const val CHANNEL_ID = "channel_01"
+        private const val CHANNEL_NAME = "post channel"
     }
 
     private lateinit var binding: FragmentCategoryBinding
@@ -60,6 +65,8 @@ class CategoryFragment : Fragment() {
 
         val layoutManager = LinearLayoutManager(requireActivity())
         binding.rvPost.layoutManager = layoutManager
+
+        // TODO : notification?
 
         if(arguments?.getInt(POSITION) == 0) {
             // info kampus
@@ -157,6 +164,11 @@ class CategoryFragment : Fragment() {
 //            adapter = PostAdapter(repo.getPost())
 //        }
 
+    }
+
+    // TODO : notification
+    private fun sendNotification(view: View) {
+        val intent = Intent()
     }
 
 }

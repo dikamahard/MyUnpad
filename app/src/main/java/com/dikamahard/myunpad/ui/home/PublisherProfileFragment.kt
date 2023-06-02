@@ -90,21 +90,18 @@ class PublisherProfileFragment : Fragment() {
             viewModel.listPublishedId.observe(viewLifecycleOwner) { listPublishedId ->
                 val adapter = PublisherAdapter(listPublhised, listPublishedId)
 
-                /*
-                adapter.setOnItemClickCallback(object : PublishedAdapter.OnItemClickCallback {
+
+                adapter.setOnItemClickCallback(object : PublisherAdapter.OnItemClickCallback {
                     override fun onItemClicked(data: Post, id: String) {
-                        val toDetailPublished = ProfileFragmentDirections.actionNavigationProfileToDetailPublishedFragment()
-                        toDetailPublished.judul = data.judul
-                        toDetailPublished.konten = data.konten
-                        toDetailPublished.publishedId = id
-                        // something here need debugging
-                        toDetailPublished.gambar = data.gambar ?: "doge_cp"
-                        ///////////////
-                        findNavController().navigate(toDetailPublished)
+                        val toDetailPost = PublisherProfileFragmentDirections.actionPublisherProfileFragmentToDetailFragment()
+                        toDetailPost.judul = data.judul
+                        toDetailPost.konten = data.konten
+                        toDetailPost.penulis = data.penulis
+                        toDetailPost.gambar = data.gambar.toString()
+                        toDetailPost.postId = id
+                        findNavController().navigate(toDetailPost)
                     }
                 })
-
-                 */
 
                 binding.rvPublihserPost.adapter = adapter
             }

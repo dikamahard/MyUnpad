@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.dikamahard.myunpad.LoginActivity
 import com.dikamahard.myunpad.R
 import com.dikamahard.myunpad.databinding.FragmentSettingBinding
@@ -42,6 +43,22 @@ class SettingFragment : Fragment() {
         binding.btnLogout.setOnClickListener {
             mAuth.signOut()
             startActivity(Intent(requireActivity(), LoginActivity::class.java))
+        }
+
+        binding.btnSave.setOnClickListener {
+            val bio1 = binding.etBio.text.toString()
+            val kontak1 = binding.etKontak.text.toString()
+
+            val profileRef = db.reference.child("users").child(mAuth.currentUser!!.uid)
+
+            val update = mapOf<String, String>(
+                "bio" to bio1,
+                "kontak" to kontak1
+            )
+
+            profileRef.updateChildren(update).addOnSuccessListener {
+                Toast.makeText(context, "Berhasil Menyimpan", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
