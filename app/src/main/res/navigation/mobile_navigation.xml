@@ -119,7 +119,7 @@
     <fragment
         android:id="@+id/publisherProfileFragment"
         android:name="com.dikamahard.myunpad.ui.home.PublisherProfileFragment"
-        android:label="fragment_publisher_profile"
+        android:label="Profil Penulis"
         tools:layout="@layout/fragment_publisher_profile" >
         <argument
             android:name="publisherId"
