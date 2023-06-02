@@ -87,6 +87,7 @@ class ProfileFragment : Fragment() {
            // binding.tvNpm.text = it.child("npm"
             binding.tvProdi.text = it.child("prodi").value.toString()
             binding.tvFakultas.text = it.child("fakultas").value.toString()
+            binding.tvBio.text = it.child("bio").value.toString()
         }
 
         binding.rvPublishedPost.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
