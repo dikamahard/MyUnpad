@@ -62,6 +62,7 @@ class PublisherProfileFragment : Fragment() {
             binding.tvNpm.text = it.child("npm").value.toString()
             binding.tvFakultas.text = it.child("fakultas").value.toString()
             binding.tvProdi.text = it.child("prodi").value.toString()
+            binding.tvBio.text = it.child("bio").value.toString()
         }
 
         // get profile image from db
