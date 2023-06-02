@@ -35,6 +35,9 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.textView5.setOnClickListener {
+            finish()
+        }
         binding.btnRegister.setOnClickListener {
 
             val email: String = binding.etEmailReg.text.toString()

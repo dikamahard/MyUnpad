@@ -50,7 +50,7 @@ class DetailPublishedFragment : Fragment() {
 
         binding.tvJudulpublished.text = judul
         binding.tvKontenpublished.text = konten
-        binding.tvIdpublihed.text = publishedId
+//        binding.tvIdpublished.text = publishedId
 
         val fragmentContext = context
 

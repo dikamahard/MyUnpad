@@ -41,7 +41,7 @@ class DetailBookmarkedFragment : Fragment() {
 
         binding.tvJudulbookmarked.text = judul
         binding.tvKontenbookmarked.text = konten
-        binding.tvIdbookmarked.text = publishedId
+//        binding.tvIdbookmarked.text = publishedId
 
         val fragmentContext = context
 
