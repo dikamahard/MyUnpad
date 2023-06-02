@@ -132,7 +132,7 @@
     <fragment
         android:id="@+id/detailBookmarkedFragment"
         android:name="com.dikamahard.myunpad.ui.profile.DetailBookmarkedFragment"
-        android:label="fragment_detail_bookmarked"
+        android:label=""
         tools:layout="@layout/fragment_detail_bookmarked">
         <argument
             android:name="judul"
