@@ -257,7 +257,22 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_data_diri2"
-            app:layout_constraintVertical_bias="0.214" />
+            app:layout_constraintVertical_bias="0.214"/>
+
+        <TextView
+            android:id="@+id/vectorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/semibold"
+            android:text="Masukkan Foto"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+            app:layout_constraintEnd_toEndOf="@+id/iv_profile"
+            app:layout_constraintStart_toStartOf="@+id/iv_profile"
+            app:layout_constraintTop_toTopOf="@+id/iv_profile"
+            app:layout_constraintVertical_bias="0.787"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
