@@ -73,12 +73,13 @@ class RegisterActivity : AppCompatActivity() {
                                 } else {
                                     Log.d("REGISTER", "akun masuk db")
                                     Toast.makeText(this, "Berhasil Membuat Akun", Toast.LENGTH_SHORT).show()
+                                    startActivity(Intent(this, CreateProfileActivity::class.java))
                                 }
                             }
 
                             // lanjut login
                             Log.d("REGISTER", "start activity login")
-                            startActivity(Intent(this, LoginActivity::class.java))
+//                            startActivity(Intent(this, LoginActivity::class.java))
                         } else {
                             Log.w("REGISTER", "REGISTER GAGAL", task.exception)
                             Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()

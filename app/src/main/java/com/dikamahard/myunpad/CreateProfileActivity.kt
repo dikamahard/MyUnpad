@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageMetadata
 import com.google.firebase.storage.ktx.storage
 
 class CreateProfileActivity : AppCompatActivity() {
@@ -50,7 +51,8 @@ class CreateProfileActivity : AppCompatActivity() {
         val userId = mAuth.currentUser!!.uid
         val profileRef = db.reference.child("users").child(userId)
 
-        imageUri = Uri.parse("android.resource://$packageName/${R.drawable.ic_baseline_profile_24}")
+        imageUri = Uri.parse("android.resource://$packageName/${R.drawable.profile}")
+        val imgType = "image/jpeg"
 
         binding.ivProfile.setOnClickListener {
             selectImage()
@@ -121,7 +123,7 @@ class CreateProfileActivity : AppCompatActivity() {
 
             // Upload Profile
             val storageRef = storage.reference.child("profile/$userId")
-            storageRef.putFile(imageUri).addOnSuccessListener {
+            storageRef.putFile(imageUri, StorageMetadata.Builder().setContentType(imgType).build()).addOnSuccessListener {
                 Log.d(TAG, "onCreate: BERHASIL GAMBAR PROFILE")
             }.addOnFailureListener {
                 Log.d(TAG, "onCreate: GAGAL GAMBAR PROFILE")
@@ -149,10 +151,11 @@ class CreateProfileActivity : AppCompatActivity() {
                     Toast.makeText(this, "GAGAL, " + error.message, Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, "BERHASIL", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, LoginActivity::class.java))
+                    finish()
                 }
             }
 
-            startActivity(Intent(this, MainActivity::class.java))
 
         }
 

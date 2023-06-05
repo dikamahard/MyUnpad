@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.dikamahard.myunpad.R
@@ -72,29 +73,47 @@ class DetailPublishedFragment : Fragment() {
 
 
         // todo : NEED DELETE FROM CATEGORY POST DB + IMAGE
-        binding.btnDelete.setOnClickListener {
-            // delete from posts db
-            val postRef = dbRef.child(FirebaseRepository.POST).child(publishedId)
-            postRef.removeValue { error, _ ->
-                if (error == null) {
 
-                    // delete from userPost db
-                    val userPostRef = dbRef.child(FirebaseRepository.USERPOST).child(userAuth!!.uid).child(publishedId)
-                    userPostRef.removeValue { error, _ ->
-                        if (error == null) {
-                            //requireActivity().finish()
-                            findNavController().popBackStack()
-                            Toast.makeText(context, "Post Berhasil Dihapus", Toast.LENGTH_SHORT).show()
-                        } else {
-                            Toast.makeText(context, "Gagal : ${error.message}", Toast.LENGTH_SHORT).show()
+
+        binding.btnDelete.setOnClickListener {
+            val alertDialogBuilder = AlertDialog.Builder(requireContext())
+
+            alertDialogBuilder.setTitle("Delete Item")
+            alertDialogBuilder.setMessage("Are you sure you want to delete this item?")
+            alertDialogBuilder.setPositiveButton("Delete") { dialog, which ->
+                // Perform the delete operation here
+                val postRef = dbRef.child(FirebaseRepository.POST).child(publishedId)
+                postRef.removeValue { error, _ ->
+                    if (error == null) {
+
+                        // delete from userPost db
+                        val userPostRef = dbRef.child(FirebaseRepository.USERPOST).child(userAuth!!.uid).child(publishedId)
+                        userPostRef.removeValue { error, _ ->
+                            if (error == null) {
+                                //requireActivity().finish()
+                                findNavController().popBackStack()
+                                Toast.makeText(context, "Post Berhasil Dihapus", Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(context, "Gagal : ${error.message}", Toast.LENGTH_SHORT).show()
+                            }
                         }
+
+                    } else {
+                        Toast.makeText(context, "Gagal : ${error.message}", Toast.LENGTH_SHORT).show()
                     }
 
-                } else {
-                    Toast.makeText(context, "Gagal : ${error.message}", Toast.LENGTH_SHORT).show()
                 }
+            }
+
+            alertDialogBuilder.setNegativeButton("Cancel") { dialog, which ->
+                // Cancel the delete operation
 
             }
+
+            val alertDialog = alertDialogBuilder.create()
+            alertDialog.show()
+
+
 
             // delete image from storage
             val deleteRef = storage.reference.child("post/$gambar")
@@ -106,7 +125,6 @@ class DetailPublishedFragment : Fragment() {
             }
 
         }
-
 
 
 
