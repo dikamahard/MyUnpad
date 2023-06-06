@@ -61,7 +61,7 @@ class RegisterActivity : AppCompatActivity() {
                     .addOnCompleteListener(this) { task ->
                         if(task.isSuccessful) {
                             Toast.makeText(this, "Account created", Toast.LENGTH_SHORT).show()
-                            Log.d("REGISTER", "akun berhawsil")
+                            Log.d("REGISTER", "akun berhasil")
                             // bikin newUser
                             val newUser = User(email = email, isnew = true)
                             val userId = mAuth.currentUser!!.uid
@@ -75,6 +75,7 @@ class RegisterActivity : AppCompatActivity() {
                                     Toast.makeText(this, "Berhasil Membuat Akun", Toast.LENGTH_SHORT).show()
                                     startActivity(Intent(this, CreateProfileActivity::class.java))
                                 }
+                                finish()
                             }
 
                             // lanjut login
