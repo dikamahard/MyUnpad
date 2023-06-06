@@ -76,7 +76,7 @@ class AddPostFragment : Fragment() {
 
         binding.btnUpload.setOnClickListener {
             val id = binding.rgKategori.checkedRadioButtonId
-            lateinit var kategori: String
+            var kategori: String = "kosong"
 
             when(id) {
                 binding.rbKampus.id -> kategori = "kampus"
@@ -89,14 +89,20 @@ class AddPostFragment : Fragment() {
 
             val repo = FirebaseRepository(mAUth, db)
 
-            val post = Post(judul = title, konten = content, penulis!!, kategori = kategori)
-            CoroutineScope(Dispatchers.Main).launch {
-                // ERROR if the user didnt pick img
-                repo.createPost(post, imageUri)
-                //requireActivity().finish()
-                findNavController().popBackStack()
-                Toast.makeText(context, "Post Berhasil", Toast.LENGTH_SHORT).show()
+            if (kategori != "kosong") {
+                val post = Post(judul = title, konten = content, penulis!!, kategori = kategori)
+                CoroutineScope(Dispatchers.Main).launch {
+                    // ERROR if the user didnt pick img
+                    repo.createPost(post, imageUri)
+                    //requireActivity().finish()
+                    //findNavController().popBackStack()
+                    findNavController().navigate(AddPostFragmentDirections.actionNavigationAddPostToSuccesPostFragment())
+                    Toast.makeText(context, "Post Berhasil", Toast.LENGTH_SHORT).show()
+                }
+            }else {
+                Toast.makeText(requireContext(), "Pilih kategori", Toast.LENGTH_SHORT).show()
             }
+
 
 
         }

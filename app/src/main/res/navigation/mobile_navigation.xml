@@ -19,7 +19,11 @@
         android:id="@+id/navigation_add_post"
         android:name="com.dikamahard.myunpad.ui.addpost.AddPostFragment"
         android:label="@string/title_add_post"
-        tools:layout="@layout/fragment_add_post" />
+        tools:layout="@layout/fragment_add_post" >
+        <action
+            android:id="@+id/action_navigation_add_post_to_succesPostFragment"
+            app:destination="@id/succesPostFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
@@ -94,6 +98,9 @@
         <action
             android:id="@+id/action_detailPublishedFragment_to_editFragment"
             app:destination="@id/editFragment" />
+        <action
+            android:id="@+id/action_detailPublishedFragment_to_succesDeleteFragment"
+            app:destination="@id/succesDeleteFragment" />
     </fragment>
     <fragment
         android:id="@+id/editFragment"
@@ -156,4 +163,14 @@
         android:name="com.dikamahard.myunpad.ui.home.DetailPublikasiPenulisFragment"
         android:label="fragment_detail_publikasi_penulis"
         tools:layout="@layout/fragment_detail_publikasi_penulis" />
+    <fragment
+        android:id="@+id/succesPostFragment"
+        android:name="com.dikamahard.myunpad.ui.addpost.SuccesPostFragment"
+        android:label="fragment_succes_post"
+        tools:layout="@layout/fragment_succes_post" />
+    <fragment
+        android:id="@+id/succesDeleteFragment"
+        android:name="com.dikamahard.myunpad.ui.profile.SuccesDeleteFragment"
+        android:label="fragment_succes_delete"
+        tools:layout="@layout/fragment_succes_delete" />
 </navigation>

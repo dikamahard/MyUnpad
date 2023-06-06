@@ -91,7 +91,7 @@ class DetailPublishedFragment : Fragment() {
                         userPostRef.removeValue { error, _ ->
                             if (error == null) {
                                 //requireActivity().finish()
-                                findNavController().popBackStack()
+                                //findNavController().popBackStack()
                                 Toast.makeText(context, "Post Berhasil Dihapus", Toast.LENGTH_SHORT).show()
                             } else {
                                 Toast.makeText(context, "Gagal : ${error.message}", Toast.LENGTH_SHORT).show()
@@ -101,6 +101,17 @@ class DetailPublishedFragment : Fragment() {
                     } else {
                         Toast.makeText(context, "Gagal : ${error.message}", Toast.LENGTH_SHORT).show()
                     }
+
+                    // delete image from storage
+                    val deleteRef = storage.reference.child("post/$gambar")
+                    deleteRef.delete().addOnSuccessListener {
+                        Log.d(TAG, "GAMBAR DELETE BERHASIL $gambar")
+                    }.addOnFailureListener {
+                        Log.d(TAG, "GAMBAR DELETE GAGAL $gambar")
+
+                    }
+
+                    findNavController().navigate(DetailPublishedFragmentDirections.actionDetailPublishedFragmentToSuccesDeleteFragment())
 
                 }
             }
@@ -115,14 +126,7 @@ class DetailPublishedFragment : Fragment() {
 
 
 
-            // delete image from storage
-            val deleteRef = storage.reference.child("post/$gambar")
-            deleteRef.delete().addOnSuccessListener {
-                Log.d(TAG, "GAMBAR DELETE BERHASIL $gambar")
-            }.addOnFailureListener {
-                Log.d(TAG, "GAMBAR DELETE GAGAL $gambar")
 
-            }
 
         }
 
