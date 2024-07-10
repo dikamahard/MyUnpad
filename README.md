@@ -11,9 +11,9 @@ A social media-like platform for students and staff at Universitas Padjadjaran t
 
 # Screenshots
 <p float="left">
-  <img src="https://github.com/dikamahard/MyUnpad/assets/66240799/d873d87a-7cee-4297-ab45-b7b784a47ad1" width=200/>
   <img src="https://github.com/dikamahard/MyUnpad/assets/66240799/da743148-7c0c-42c0-9634-f504c1fb1d20" width=200/>
   <img src="https://github.com/dikamahard/MyUnpad/assets/66240799/21b22e7c-0cec-454f-8966-66ca47c22b2b" width=200/>
+  <img src="https://github.com/dikamahard/MyUnpad/assets/66240799/e5350604-b4fa-4f7a-a59d-c851f8cc6f90" width=200/>
 </p>
 
 <p float="left">
